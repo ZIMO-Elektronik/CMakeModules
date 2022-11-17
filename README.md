@@ -63,3 +63,12 @@ CMakeModules bundles CMake modules and toolchain files.
   | Release      | -DNDEBUG -O3    |
   | RelWithDebug | -O3 -g          |
   | MinSizeRel   | -DNDEBUG -Oz    |
+
+- gcc  
+  Toolchain file to build x86_64 target with GCC. Build types are defined as follows
+  | Build type   | Flags           |
+  | ------------ | --------------- |
+  | Debug        | -O0 -g          |
+  | Release      | -DNDEBUG -O3    |
+  | RelWithDebug | -O3 -g          |
+  | MinSizeRel   | -DNDEBUG -Os    |
