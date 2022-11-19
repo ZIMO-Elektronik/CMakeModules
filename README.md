@@ -5,6 +5,9 @@
 CMakeModules bundles CMake modules and toolchain files.
 
 ### Modules
+- CPM.cmake  
+  CPM.cmake is a cross-platform CMake script that adds dependency management capabilities to CMake. It's built as a thin wrapper around CMake's [FetchContent](https://cmake.org/cmake/help/latest/module/FetchContent.html) module that adds version control, caching, a simple API [and more](https://github.com/cpm-cmake/CPM.cmake#comparison-to-pure-fetchcontent--externalproject).
+
 - fetchcontent_declare_unique  
   Wrapper around CMake's very own [FetchContent_Declare](https://cmake.org/cmake/help/latest/module/FetchContent.html) command. In case a GIT_REPOSITORY is checked out multiple times with different GIT_TAGs an error is thrown. This is still far from package managing but at least it doesn't compile...
   ```cmake
