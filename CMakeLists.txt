@@ -8,4 +8,4 @@ include(modules/target_common_warnings.cmake)
 include(modules/target_compile_link_options.cmake)
 include(modules/target_suppress_warnings.cmake)
 
-project(CMakeModules)
+project(CMakeModules VERSION 0.0.1)
