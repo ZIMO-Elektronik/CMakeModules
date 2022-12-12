@@ -39,6 +39,9 @@ CMakeModules bundles CMake modules and toolchain files.
 - target_suppress_warnings  
   Currently suppresses warnings from header files by prepending the SYSTEM keyword to INTERFACE_INCLUDE_DIRECTORIES. Would be great if all errors could be suppressed.
 
+- target_unity_build  
+  Enables the [UNITY_BUILD](https://cmake.org/cmake/help/latest/prop_tgt/UNITY_BUILD.html) target property and sets [UNITY_BUILD_BATCH_SIZE](https://cmake.org/cmake/help/latest/prop_tgt/UNITY_BUILD_BATCH_SIZE.html#prop_tgt:UNITY_BUILD_BATCH_SIZE) 0.
+
 ### Toolchain files
 - arm_clang  
   Toolchain file to build ARM target with Clang. Build types are defined as follows
