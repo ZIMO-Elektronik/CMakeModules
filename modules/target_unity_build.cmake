@@ -23,6 +23,6 @@ SOFTWARE.
 ]]
 
 function(target_unity_build TGT)
-  set_target_properties(${TGT} PROPERTIES UNITY_BUILD ON)
-  set_target_properties(${TGT} PROPERTIES UNITY_BUILD_BATCH_SIZE 0)
+  set_target_properties(${TGT} PROPERTIES UNITY_BUILD ON UNITY_BUILD_BATCH_SIZE
+                                                         0)
 endfunction()
