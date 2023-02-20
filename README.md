@@ -1,5 +1,7 @@
 # CMakeModules
 
+[![tests](https://github.com/ZIMO-Elektronik/CMakeModules/actions/workflows/tests.yml/badge.svg)](https://github.com/ZIMO-Elektronik/CMakeModules/actions/workflows/tests.yml)
+
 <img src="data/images/logo.png" width="15%" align="right"/>
 
 CMakeModules bundles CMake modules and toolchain files.

@@ -25,11 +25,23 @@ SOFTWARE.
 function(minify_html INPUT OUTPUT)
   file(READ ${INPUT} CONTENT)
 
-  # Remove all comments
-  string(REGEX REPLACE "<!--(.*)-->" "" CONTENT "${CONTENT}")
+  # Remove HTML single line comments
+  string(REGEX REPLACE "\\<!--[^\n]*-->" "" CONTENT "${CONTENT}")
 
-  # Remove all newline + whitespaces
-  string(REGEX REPLACE "\n( *)" "" CONTENT "${CONTENT}")
+  # Remove HTML multi-line comments
+  string(REGEX REPLACE "\\<!--(.*)-->" "" CONTENT "${CONTENT}")
+
+  # Remove JS single line comments
+  string(REGEX REPLACE "\/\/[^\n]*" "" CONTENT "${CONTENT}")
+
+  # Remove JS multi-line comments
+  string(REGEX REPLACE "/\\*(.*)\\*/" "" CONTENT "${CONTENT}")
+
+  # Remove all newlines
+  string(REGEX REPLACE "\n" "" CONTENT "${CONTENT}")
+
+  # Condense whitespaces
+  string(REGEX REPLACE "  +" " " CONTENT "${CONTENT}")
 
   file(WRITE ${OUTPUT} "${CONTENT}")
 endfunction()

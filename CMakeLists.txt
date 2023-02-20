@@ -10,3 +10,13 @@ include(modules/target_suppress_warnings.cmake)
 include(modules/target_unity_build.cmake)
 
 project(CMakeModules VERSION 0.0.1)
+
+if(CMAKE_PROJECT_NAME STREQUAL PROJECT_NAME)
+  include(CTest)
+endif()
+
+if(BUILD_TESTING
+   AND CMAKE_PROJECT_NAME STREQUAL PROJECT_NAME
+   AND CMAKE_SYSTEM_NAME STREQUAL CMAKE_HOST_SYSTEM_NAME)
+  add_subdirectory(tests)
+endif()
