@@ -9,7 +9,7 @@ include(modules/target_compile_link_options.cmake)
 include(modules/target_suppress_warnings.cmake)
 include(modules/target_unity_build.cmake)
 
-project(CMakeModules VERSION 0.0.1)
+project(CMakeModules VERSION 0.0.4)
 
 if(CMAKE_PROJECT_NAME STREQUAL PROJECT_NAME)
   include(CTest)
