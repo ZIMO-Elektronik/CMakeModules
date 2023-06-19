@@ -34,6 +34,27 @@ CMakeModules bundles CMake modules and toolchain files.
 - target_unity_build  
   Enables the [UNITY_BUILD](https://cmake.org/cmake/help/latest/prop_tgt/UNITY_BUILD.html) target property and sets [UNITY_BUILD_BATCH_SIZE](https://cmake.org/cmake/help/latest/prop_tgt/UNITY_BUILD_BATCH_SIZE.html#prop_tgt:UNITY_BUILD_BATCH_SIZE) 0.
 
+- version_from_git  
+  The function uses the output of `git describe --tags` to generate a MAJOR.MINOR.PATCH version string. This project versions itself with it.
+  ```cmake
+  version_from_git()
+  project(CMakeModules VERSION ${VERSION_FROM_GIT})
+  ```
+
+  It sets the following variables:
+  - VERSION_FROM_GIT
+  - VERSION_MAJOR_FROM_GIT
+  - VERSION_MINOR_FROM_GIT
+  - VERSION_PATCH_FROM_GIT
+  - VERSION_SUFFIX_FROM_GIT
+
+  :warning: GitHub actions/checkout@v3 does not automatically checkout tags. You'll need to manually fetch them before running CMake.
+  ```yml
+  - run: |
+    git fetch --unshallow --tags
+    cmake -Bbuild
+  ```
+
 ### Toolchain files
 - arm_clang  
   Toolchain file to build ARM target with Clang. Build types are defined as follows

@@ -43,9 +43,10 @@ set(CMAKE_OBJCOPY ${OBJCOPY})
 set(CMAKE_OBJDUMP ${OBJDUMP})
 set(CMAKE_SIZE ${SIZE})
 
-# Not working until 3.24?
-# https://cmake.org/cmake/help/latest/variable/CMAKE_TRY_COMPILE_PLATFORM_VARIABLES.html#variable:CMAKE_TRY_COMPILE_PLATFORM_VARIABLES
-# if(NOT DEFINED ARCH) message(FATAL_ERROR "Unknown architecture") endif()
+set(CMAKE_TRY_COMPILE_PLATFORM_VARIABLES ARCH)
+if(NOT DEFINED ARCH)
+  message(FATAL_ERROR "Unknown architecture")
+endif()
 
 set(CMAKE_ASM_FLAGS "${ARCH} -x assembler-with-cpp")
 set(CMAKE_C_FLAGS "${ARCH}")
