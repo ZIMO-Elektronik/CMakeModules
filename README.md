@@ -48,7 +48,7 @@ CMakeModules bundles CMake modules and toolchain files.
   - VERSION_PATCH_FROM_GIT
   - VERSION_SUFFIX_FROM_GIT
 
-  :warning: GitHub actions/checkout@v3 does not automatically checkout tags. You'll need to manually fetch them before running CMake.
+  :warning: GitHub [actions/checkout@v3](https://github.com/actions/checkout) does not automatically checkout tags. You'll need to manually fetch them before running CMake.
   ```yml
   - run: |
     git fetch --unshallow --tags
