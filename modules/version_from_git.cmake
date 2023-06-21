@@ -39,7 +39,8 @@ function(version_from_git)
     set(VERSION_MINOR ${CMAKE_MATCH_2})
     set(VERSION_PATCH ${CMAKE_MATCH_3})
     set(VERSION ${VERSION_MAJOR}.${VERSION_MINOR}.${VERSION_PATCH})
-    set(VERSION_SUFFIX ${CMAKE_MATCH_4})
+    set(IDENTIFIERS ${CMAKE_MATCH_4})
+    set(METADATA ${CMAKE_MATCH_5})
   else()
     message(FATAL_ERROR "${GIT_OUTPUT} isn't valid semantic version")
   endif()
@@ -57,7 +58,10 @@ function(version_from_git)
   set(VERSION_FROM_GIT
       ${VERSION}
       PARENT_SCOPE)
-  set(VERSION_SUFFIX_FROM_GIT
-      ${VERSION_SUFFIX}
+  set(IDENTIFIERS_FROM_GIT
+      ${IDENTIFIERS}
+      PARENT_SCOPE)
+  set(METADATA_FROM_GIT
+      ${METADATA}
       PARENT_SCOPE)
 endfunction()
