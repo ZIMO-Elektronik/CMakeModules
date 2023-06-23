@@ -51,9 +51,8 @@ CMakeModules bundles CMake modules and toolchain files.
 
   :warning: GitHub [actions/checkout@v3](https://github.com/actions/checkout) does not automatically checkout tags. You'll need to manually fetch them before running CMake.
   ```yml
-  - run: |
-      git fetch --unshallow --tags
-      cmake -Bbuild
+  - uses: actions/checkout@v3
+  - run: git fetch --unshallow --tags
   ```
 
 ### Toolchain files
