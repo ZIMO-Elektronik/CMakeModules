@@ -5,7 +5,6 @@ include(src/modules/minify_html.cmake)
 include(src/modules/sanatize.cmake)
 include(src/modules/target_common_warnings.cmake)
 include(src/modules/target_compile_link_options.cmake)
-include(src/modules/target_suppress_warnings.cmake)
 include(src/modules/target_unity_build.cmake)
 include(src/modules/version_from_git.cmake)
 
