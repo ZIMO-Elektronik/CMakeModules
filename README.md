@@ -28,9 +28,6 @@ CMakeModules bundles CMake modules and toolchain files.
 - target_compile_link_options
   Wrapper around [target_compile_options](https://cmake.org/cmake/help/latest/command/target_compile_options.html) and [target_link_options](https://cmake.org/cmake/help/latest/command/target_link_options.html). Simply invokes both commands with all arguments.
 
-- target_suppress_warnings  
-  Currently suppresses warnings from header files by prepending the SYSTEM keyword to INTERFACE_INCLUDE_DIRECTORIES. Would be great if all errors could be suppressed.
-
 - target_unity_build  
   Enables the [UNITY_BUILD](https://cmake.org/cmake/help/latest/prop_tgt/UNITY_BUILD.html) target property and sets [UNITY_BUILD_BATCH_SIZE](https://cmake.org/cmake/help/latest/prop_tgt/UNITY_BUILD_BATCH_SIZE.html#prop_tgt:UNITY_BUILD_BATCH_SIZE) 0.
 
