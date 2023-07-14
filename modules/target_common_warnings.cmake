@@ -36,12 +36,14 @@ function(target_common_warnings)
   set(GNU_CXX_WARNINGS "$<$<COMPILE_LANG_AND_ID:CXX,GNU>:-Wuseless-cast>")
 
   list(GET ARGN 0 TGT)
-  target_compile_options(${TGT} PRIVATE ${C_CXX_WARNINGS} ${CXX_WARNINGS}
-                                        ${GNU_WARNINGS} ${GNU_CXX_WARNINGS})
+  list(GET ARGN 1 SCOPE)
+  target_compile_options(${TGT} ${SCOPE} ${C_CXX_WARNINGS} ${CXX_WARNINGS}
+                         ${GNU_WARNINGS} ${GNU_CXX_WARNINGS})
 
   # If further arguments passed, forward
   list(LENGTH ARGN N)
-  if(N GREATER 1)
-    target_compile_options(${ARGN})
+  if(N GREATER 2)
+    list(SUBLIST ARGN 2 -1 ARGS)
+    target_compile_options(${TGT} ${SCOPE} ${ARGS})
   endif()
 endfunction()
