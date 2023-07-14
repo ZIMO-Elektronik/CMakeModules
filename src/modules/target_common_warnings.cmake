@@ -25,7 +25,10 @@ SOFTWARE.
 function(target_common_warnings)
   # Set common warnings
   set(C_CXX_WARNINGS
-      -Wall;-Wextra;-Wshadow;-Wunused;-Wcast-align;-Wpedantic;-Wconversion;-Wsign-conversion;-Wmisleading-indentation;-Wnull-dereference;-Wdouble-promotion;-Wfatal-errors;-Werror=array-bounds;-Werror=array-compare;-Werror=dangling-else;-Werror=implicit-fallthrough;-Werror=parentheses;-Werror=infinite-recursion;-Werror=logical-not-parentheses;-Werror=misleading-indentation;-Werror=return-type;-Werror=sequence-point;-Werror=shift-negative-value;-Werror=shift-overflow;-Werror=sizeof-array-div;-Werror=strict-aliasing;-Werror=tautological-compare;-Werror=type-limits
+      -Wall;-Wextra;-Wshadow;-Wunused;-Wcast-align;-Wpedantic;-Wconversion;-Wsign-conversion;-Wmisleading-indentation;-Wnull-dereference;-Wdouble-promotion;-Wfatal-errors;
+  )
+  set(C_CXX_ERRORS
+      -Werror=array-bounds;-Werror=array-compare;-Werror=dangling-else;-Werror=implicit-fallthrough;-Werror=parentheses;-Werror=infinite-recursion;-Werror=logical-not-parentheses;-Werror=misleading-indentation;-Werror=return-type;-Werror=sequence-point;-Werror=shift-negative-value;-Werror=shift-overflow;-Werror=sizeof-array-div;-Werror=strict-aliasing;-Werror=tautological-compare;-Werror=type-limits
   )
   set(CXX_WARNINGS
       "$<$<COMPILE_LANGUAGE:CXX>:-Wnon-virtual-dtor;-Wold-style-cast;-Wsuggest-override;-Woverloaded-virtual>"
@@ -37,8 +40,14 @@ function(target_common_warnings)
 
   list(GET ARGN 0 TGT)
   list(GET ARGN 1 SCOPE)
-  target_compile_options(${TGT} ${SCOPE} ${C_CXX_WARNINGS} ${CXX_WARNINGS}
-                         ${GNU_WARNINGS} ${GNU_CXX_WARNINGS})
+  target_compile_options(
+    ${TGT}
+    ${SCOPE}
+    ${C_CXX_WARNINGS}
+    ${C_CXX_ERRORS}
+    ${CXX_WARNINGS}
+    ${GNU_WARNINGS}
+    ${GNU_CXX_WARNINGS})
 
   # If further arguments passed, forward
   list(LENGTH ARGN N)
