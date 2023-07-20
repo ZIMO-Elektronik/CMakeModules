@@ -22,7 +22,7 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 ]]
 
-function(target_common_warnings)
+function(target_common_warnings TGT SCOPE)
   # Set common warnings
   set(C_CXX_WARNINGS
       -Wall;-Wextra;-Wshadow;-Wunused;-Wcast-align;-Wpedantic;-Wconversion;-Wsign-conversion;-Wmisleading-indentation;-Wnull-dereference;-Wdouble-promotion;-Wfatal-errors;
@@ -38,8 +38,6 @@ function(target_common_warnings)
   )
   set(GNU_CXX_WARNINGS "$<$<COMPILE_LANG_AND_ID:CXX,GNU>:-Wuseless-cast>")
 
-  list(GET ARGN 0 TGT)
-  list(GET ARGN 1 SCOPE)
   target_compile_options(
     ${TGT}
     ${SCOPE}
@@ -50,9 +48,5 @@ function(target_common_warnings)
     ${GNU_CXX_WARNINGS})
 
   # If further arguments passed, forward
-  list(LENGTH ARGN N)
-  if(N GREATER 2)
-    list(SUBLIST ARGN 2 -1 ARGS)
-    target_compile_options(${TGT} ${SCOPE} ${ARGS})
-  endif()
+  target_compile_options(${TGT} ${SCOPE} ${ARGN})
 endfunction()
