@@ -28,7 +28,7 @@ function(target_common_warnings TGT SCOPE)
       -Wall;-Wextra;-Wshadow;-Wunused;-Wcast-align;-Wpedantic;-Wconversion;-Wsign-conversion;-Wmisleading-indentation;-Wnull-dereference;-Wdouble-promotion;-Wfatal-errors;
   )
   set(C_CXX_ERRORS
-      -Werror=array-bounds;-Werror=array-compare;-Werror=dangling-else;-Werror=implicit-fallthrough;-Werror=parentheses;-Werror=infinite-recursion;-Werror=logical-not-parentheses;-Werror=misleading-indentation;-Werror=return-type;-Werror=sequence-point;-Werror=shift-negative-value;-Werror=shift-overflow;-Werror=sizeof-array-div;-Werror=strict-aliasing;-Werror=tautological-compare;-Werror=type-limits
+      -Werror=array-bounds;-Werror=array-compare;-Werror=dangling-else;-Werror=implicit-fallthrough;-Werror-implicit-function-declaration;-Werror=parentheses;-Werror=infinite-recursion;-Werror=logical-not-parentheses;-Werror=misleading-indentation;-Werror=return-type;-Werror=sequence-point;-Werror=shift-negative-value;-Werror=shift-overflow;-Werror=sizeof-array-div;-Werror=strict-aliasing;-Werror=tautological-compare;-Werror=type-limits
   )
   set(CXX_WARNINGS
       "$<$<COMPILE_LANGUAGE:CXX>:-Wnon-virtual-dtor;-Wold-style-cast;-Wsuggest-override;-Woverloaded-virtual>"
