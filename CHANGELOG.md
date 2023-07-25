@@ -1,5 +1,8 @@
 # Changelog
 
+## 0.1.1
+- Add -Werror-implicit-function-declaration to target_common_warnings
+
 ## 0.1.0
 - Add a whole bunch of -Werror flags to target_common_warnings
 - Remove target_suppress_warnings (superseded by [FetchContent_Declare](https://cmake.org/cmake/help/latest/module/FetchContent.html) SYSTEM option)
