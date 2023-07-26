@@ -1,5 +1,8 @@
 # Changelog
 
+## 0.1.2
+- ‘-Werror=’ argument ‘-Werror=implicit-function-declaration’ is not valid for C++
+
 ## 0.1.1
 - Add -Werror-implicit-function-declaration to target_common_warnings
 
