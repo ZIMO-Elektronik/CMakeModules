@@ -2,7 +2,7 @@ cmake_minimum_required(VERSION 3.25 FATAL_ERROR)
 
 include(src/modules/cpm.cmake)
 include(src/modules/minify_html.cmake)
-include(src/modules/sanatize.cmake)
+include(src/modules/sanitize.cmake)
 include(src/modules/target_common_warnings.cmake)
 include(src/modules/target_compile_link_options.cmake)
 include(src/modules/target_unity_build.cmake)

@@ -16,10 +16,10 @@ CMakeModules bundles CMake modules and toolchain files.
   minify_html(index.html ${CMAKE_BINARY_DIR}/index.html)
   ```
 
-- sanatize  
-  Add [-fsanitize](https://gcc.gnu.org/onlinedocs/gcc/Instrumentation-Options.html) options.
+- sanitize  
+  Add [-fsanitize](https://gcc.gnu.org/onlinedocs/gcc/Instrumentation-Options.html) options to the current directory and below.
   ```cmake
-  sanatize("address,undefined")
+  sanitize("address,undefined")
   ```
 
 - target_common_warnings  
