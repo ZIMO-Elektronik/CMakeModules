@@ -22,7 +22,7 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 ]]
 
-function(target_unity_build TGT)
-  set_target_properties(${TGT} PROPERTIES UNITY_BUILD ON UNITY_BUILD_BATCH_SIZE
-                                                         0)
+function(target_unity_build TARGET)
+  set_target_properties(${TARGET} PROPERTIES UNITY_BUILD ON
+                                             UNITY_BUILD_BATCH_SIZE 0)
 endfunction()

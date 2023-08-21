@@ -22,7 +22,7 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 ]]
 
-function(target_compile_link_options TGT SCOPE)
-  target_compile_options(TGT SCOPE ${ARGN})
-  target_link_options(TGT SCOPE ${ARGN})
+function(target_compile_link_options TARGET SCOPE)
+  target_compile_options(${TARGET} ${SCOPE} ${ARGN})
+  target_link_options(${TARGET} ${SCOPE} ${ARGN})
 endfunction()

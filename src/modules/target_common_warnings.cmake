@@ -22,7 +22,7 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 ]]
 
-function(target_common_warnings TGT SCOPE)
+function(target_common_warnings TARGET SCOPE)
   # Set common warnings
   set(C_CXX_WARNINGS
       -Wall;-Wextra;-Wshadow;-Wunused;-Wcast-align;-Wpedantic;-Wconversion;-Wsign-conversion;-Wmisleading-indentation;-Wnull-dereference;-Wdouble-promotion;-Wfatal-errors;
@@ -42,7 +42,7 @@ function(target_common_warnings TGT SCOPE)
   )
 
   target_compile_options(
-    ${TGT}
+    ${TARGET}
     ${SCOPE}
     ${C_CXX_WARNINGS}
     ${CXX_WARNINGS}
@@ -52,5 +52,5 @@ function(target_common_warnings TGT SCOPE)
     ${C_CXX_ERRORS})
 
   # If further arguments passed, forward
-  target_compile_options(${TGT} ${SCOPE} ${ARGN})
+  target_compile_options(${TARGET} ${SCOPE} ${ARGN})
 endfunction()

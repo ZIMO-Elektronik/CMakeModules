@@ -1,5 +1,8 @@
 # Changelog
 
+# 0.2.1
+- Fix target_compile_link_options
+
 ## 0.2.0
 - Fix spelling of `sanitize`
 
