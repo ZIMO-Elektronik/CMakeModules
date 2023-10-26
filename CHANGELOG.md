@@ -1,5 +1,8 @@
 # Changelog
 
+# 0.2.2
+- Update to CPM 0.38.6
+
 # 0.2.1
 - Fix target_compile_link_options
 

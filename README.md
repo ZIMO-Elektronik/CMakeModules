@@ -7,7 +7,7 @@
 CMakeModules bundles CMake modules and toolchain files.
 
 ### Modules
-- CPM.cmake  
+- [CPM.cmake](https://github.com/cpm-cmake/CPM.cmake)  
   CPM.cmake is a cross-platform CMake script that adds dependency management capabilities to CMake. It's built as a thin wrapper around CMake's [FetchContent](https://cmake.org/cmake/help/latest/module/FetchContent.html) module that adds version control, caching, a simple API [and more](https://github.com/cpm-cmake/CPM.cmake#comparison-to-pure-fetchcontent--externalproject).
 
 - minify_html  
