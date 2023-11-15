@@ -22,7 +22,23 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 ]]
 
-function(target_compile_link_options TARGET SCOPE)
-  target_compile_options(${TARGET} ${SCOPE} ${ARGN})
-  target_link_options(${TARGET} ${SCOPE} ${ARGN})
+function(add_clang_format_target)
+  set(one TARGET)
+  set(multi OPTIONS FILES)
+  cmake_parse_arguments(arg "" "${one}" "${multi}" "${ARGN}")
+
+  if(NOT DEFINED arg_TARGET)
+    set(arg_TARGET clang-format)
+  endif()
+
+  find_program(CLANG_FORMAT_EXECUTABLE clang-format)
+  if(NOT CLANG_FORMAT_EXECUTABLE)
+    return()
+  endif()
+
+  add_custom_target(
+    ${arg_TARGET}
+    COMMAND ${CLANG_FORMAT_EXECUTABLE} ${arg_OPTIONS} ${arg_FILES}
+    WORKING_DIRECTORY ${CMAKE_SOURCE_DIR}
+    COMMENT "${CLANG_FORMAT_EXECUTABLE} ${arg_OPTIONS} ${arg_FILES}")
 endfunction()

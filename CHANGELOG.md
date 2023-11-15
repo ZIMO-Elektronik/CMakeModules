@@ -1,9 +1,12 @@
 # Changelog
 
-# 0.2.2
+## 0.3.0
+- Add clang_format
+
+## 0.2.2
 - Update to CPM 0.38.6
 
-# 0.2.1
+## 0.2.1
 - Fix target_compile_link_options
 
 ## 0.2.0
