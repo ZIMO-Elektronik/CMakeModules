@@ -26,6 +26,7 @@ CMakeModules bundles CMake modules and toolchain files.
         <li><a href="#arm_none_eabi_gcc">arm_none_eabi_gcc</a></li>
         <li><a href="#clang">clang</a></li>
         <li><a href="#gcc--gcc-12">gcc / gcc12</a></li>
+        <li><a href="#x86_64-w64-mingw32">x86_64-w64-mingw32</a></li>
       </ul>
   </ol>
 </details>
