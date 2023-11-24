@@ -105,19 +105,10 @@ Toolchain file to build ARM target with arm-none-eabi-gcc. Build types are defin
 | MinSizeRel   | -DNDEBUG -Os -g |
 
 ### clang
-Toolchain file to build x86_64 target with Clang. Build types are defined as follows
-| Build type   | Flags           |
-| ------------ | --------------- |
-| Debug        | -O0 -g          |
-| Release      | -DNDEBUG -O3    |
-| RelWithDebug | -O3 -g          |
-| MinSizeRel   | -DNDEBUG -Oz    |
+Toolchain file to build x86_64 target with Clang.
 
 ### gcc / gcc-12
-Toolchain file to build x86_64 target with GCC. Build types are defined as follows
-| Build type   | Flags           |
-| ------------ | --------------- |
-| Debug        | -O0 -g          |
-| Release      | -DNDEBUG -O3    |
-| RelWithDebug | -O3 -g          |
-| MinSizeRel   | -DNDEBUG -Os    |
+Toolchain file to build x86_64 target with GCC / GCC 12.
+
+### x86_64-w64-mingw32
+Toolchain file to build x86_64 target with [MinGW](https://www.mingw-w64.org/).

@@ -1,5 +1,8 @@
 # Changelog
 
+## 0.4.0
+- Add x86_64-w64-mingw32 toolchain file
+
 ## 0.3.0
 - Add add_clang_format_target
 
