@@ -80,10 +80,11 @@ It sets the following variables:
 - IDENTIFIERS_FROM_GIT
 - METADATA_FROM_GIT
 
-:warning: GitHub [actions/checkout@v3](https://github.com/actions/checkout) does not automatically checkout tags. You'll need to manually fetch them before running CMake.
+:warning: GitHub [actions/checkout@v4](https://github.com/actions/checkout) does not automatically checkout tags. You'll need to manually specify that, e.g.
 ```yml
-- uses: actions/checkout@v3
-- run: git fetch --unshallow --tags
+- uses: actions/checkout@v4
+  with:
+    fetch-depth: 0
 ```
 
 ## Toolchain files
