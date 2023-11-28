@@ -23,17 +23,26 @@ SOFTWARE.
 ]]
 
 function(version_from_git)
+  find_package(Git)
+
   # Run git describe --tags
   execute_process(
     COMMAND ${GIT_EXECUTABLE} describe --tags
     WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}
     OUTPUT_VARIABLE GIT_OUTPUT
-    OUTPUT_STRIP_TRAILING_WHITESPACE COMMAND_ERROR_IS_FATAL ANY)
+    ERROR_VARIABLE GIT_ERROR
+    OUTPUT_STRIP_TRAILING_WHITESPACE ERROR_STRIP_TRAILING_WHITESPACE)
 
-  # Find semantic version in output
-  if(GIT_OUTPUT
-     MATCHES
-     "^v(0|[1-9][0-9]*)[.](0|[1-9][0-9]*)[.](0|[1-9][0-9]*)(-[.0-9A-Za-z-]+)?([+][.0-9A-Za-z-]+)?$"
+  # Error defaults to 0.0.0, otherwise find semantic version in output
+  if(GIT_ERROR)
+    set(VERSION_MAJOR 0)
+    set(VERSION_MINOR 0)
+    set(VERSION_PATCH 0)
+    set(VERSION ${VERSION_MAJOR}.${VERSION_MINOR}.${VERSION_PATCH})
+  elseif(
+    GIT_OUTPUT
+    MATCHES
+    "^v(0|[1-9][0-9]*)[.](0|[1-9][0-9]*)[.](0|[1-9][0-9]*)(-[.0-9A-Za-z-]+)?([+][.0-9A-Za-z-]+)?$"
   )
     set(VERSION_MAJOR ${CMAKE_MATCH_1})
     set(VERSION_MINOR ${CMAKE_MATCH_2})
