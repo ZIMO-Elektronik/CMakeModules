@@ -1,5 +1,8 @@
 # Changelog
 
+## 0.4.1
+- version_from_git defaults to 0.0.0 if git describe --tags errors 
+
 ## 0.4.0
 - Add x86_64-w64-mingw32 toolchain file
 

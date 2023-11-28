@@ -35,6 +35,7 @@ function(version_from_git)
 
   # Error defaults to 0.0.0, otherwise find semantic version in output
   if(GIT_ERROR)
+    message(WARNING "git describe --tags failed, default to 0.0.0")
     set(VERSION_MAJOR 0)
     set(VERSION_MINOR 0)
     set(VERSION_PATCH 0)
