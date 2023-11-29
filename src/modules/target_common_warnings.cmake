@@ -38,8 +38,12 @@ function(target_common_warnings TARGET SCOPE)
   # Make some errors
   set(C_ERRORS "$<$<COMPILE_LANGUAGE:C>:-Werror-implicit-function-declaration>")
   set(C_CXX_ERRORS
-      -Werror=array-bounds;-Werror=array-compare;-Werror=dangling-else;-Werror=implicit-fallthrough;-Werror=parentheses;-Werror=infinite-recursion;-Werror=logical-not-parentheses;-Werror=misleading-indentation;-Werror=return-type;-Werror=sequence-point;-Werror=shift-negative-value;-Werror=shift-overflow;-Werror=sizeof-array-div;-Werror=strict-aliasing;-Werror=tautological-compare;-Werror=type-limits
+      -Werror=array-bounds;-Werror=dangling-else;-Werror=implicit-fallthrough;-Werror=parentheses;-Werror=logical-not-parentheses;-Werror=misleading-indentation;-Werror=return-type;-Werror=sequence-point;-Werror=shift-negative-value;-Werror=shift-overflow;-Werror=sizeof-array-div;-Werror=strict-aliasing;-Werror=tautological-compare;-Werror=type-limits
   )
+
+  if(NOT MINGW)
+    list(APPEND C_CXX_ERRORS -Werror=array-compare;-Werror=infinite-recursion)
+  endif()
 
   target_compile_options(
     ${TARGET}
