@@ -2,6 +2,7 @@ cmake_minimum_required(VERSION 3.25 FATAL_ERROR)
 
 include(src/modules/add_clang_format_target.cmake)
 include(src/modules/cpm.cmake)
+include(src/modules/find_qt.cmake)
 include(src/modules/minify_html.cmake)
 include(src/modules/sanitize.cmake)
 include(src/modules/target_common_warnings.cmake)

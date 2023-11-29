@@ -1,5 +1,8 @@
 # Changelog
 
+## 0.5.0
+- Add find_qt
+
 ## 0.4.1
 - version_from_git defaults to 0.0.0 if git describe --tags errors 
 
