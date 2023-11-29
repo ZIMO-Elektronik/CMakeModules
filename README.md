@@ -13,6 +13,7 @@ CMakeModules bundles CMake modules and toolchain files.
       <ul>
         <li><a href="#add_clang_format_target">add_clang_format_target</a></li>
         <li><a href="#cpm">cpm</a></li>
+        <li><a href="#find_qt">find_qt</a></li>
         <li><a href="#minify_html">minify_html</a></li>
         <li><a href="#sanitize">sanitize</a></li>
         <li><a href="#target_common_warnings">target_common_warnings</a></li>
@@ -43,6 +44,12 @@ add_clang_format_target(FormatTarget OPTIONS -i --style=llvm FILES main.cpp func
 
 ### cpm
 [CPM.cmake](https://github.com/cpm-cmake/CPM.cmake) is a cross-platform CMake script that adds dependency management capabilities to CMake. It's built as a thin wrapper around CMake's [FetchContent](https://cmake.org/cmake/help/latest/module/FetchContent.html) module that adds version control, caching, a simple API [and more](https://github.com/cpm-cmake/CPM.cmake#comparison-to-pure-fetchcontent--externalproject).
+
+### find_qt
+Macro which conditionally adds Qt6 or Qt5 components depending on which version is already present in the configuration. If neither Qt6 nor Qt5 is found, the macro tries to add Qt6 first and if this fails, Qt5. This allows libraries to integrate Qt components without having to know the version.
+```cmake
+find_qt(REQUIRED COMPONENTS Charts Core DataVisualization Widgets)
+```
 
 ### minify_html
 Minify HTML code by removing comments, newlines and whitespaces.
