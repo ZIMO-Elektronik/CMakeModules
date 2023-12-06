@@ -12,8 +12,9 @@ CMakeModules bundles CMake modules and toolchain files.
     <li><a href="#modules">Modules</a></li>
       <ul>
         <li><a href="#add_clang_format_target">add_clang_format_target</a></li>
-        <li><a href="#cpm">cpm</a></li>
         <li><a href="#find_qt">find_qt</a></li>
+        <li><a href="#get_cpm">get_cpm</a></li>
+        <li><a href="#get_cqtdeployer">get_cqtdeployer</a></li>
         <li><a href="#minify_html">minify_html</a></li>
         <li><a href="#sanitize">sanitize</a></li>
         <li><a href="#target_common_warnings">target_common_warnings</a></li>
@@ -23,11 +24,11 @@ CMakeModules bundles CMake modules and toolchain files.
       </ul>
     <li><a href="#toolchain-files">Toolchain files</a></li>
       <ul>
-        <li><a href="#arm_clang">arm_clang</a></li>
-        <li><a href="#arm_none_eabi_gcc">arm_none_eabi_gcc</a></li>
-        <li><a href="#clang">clang</a></li>
-        <li><a href="#gcc--gcc-12">gcc / gcc12</a></li>
-        <li><a href="#x86_64-w64-mingw32">x86_64-w64-mingw32</a></li>
+        <li><a href="#toolchain-arm-clang">toolchain-arm-clang</a></li>
+        <li><a href="#toolchain-arm-none-eabi-gcc">toolchain-arm-none-eabi-gcc</a></li>
+        <li><a href="#toolchain-clang">toolchain-clang</a></li>
+        <li><a href="#toolchain-gcc--toolchain-gcc-12">toolchain-gcc--toolchain-gcc-12</a></li>
+        <li><a href="#toolchain-x86_64-w64-mingw32">toolchain-x86_64-w64-mingw32</a></li>
       </ul>
   </ol>
 </details>
@@ -42,13 +43,33 @@ add_clang_format_target(<name> OPTIONS [<options...>] FILES [<files...>])
 add_clang_format_target(FormatTarget OPTIONS -i --style=llvm FILES main.cpp func.cpp)
 ```
 
-### cpm
-[CPM.cmake](https://github.com/cpm-cmake/CPM.cmake) is a cross-platform CMake script that adds dependency management capabilities to CMake. It's built as a thin wrapper around CMake's [FetchContent](https://cmake.org/cmake/help/latest/module/FetchContent.html) module that adds version control, caching, a simple API [and more](https://github.com/cpm-cmake/CPM.cmake#comparison-to-pure-fetchcontent--externalproject).
-
 ### find_qt
 Macro which conditionally adds Qt6 or Qt5 components depending on which version is already present in the configuration. If neither Qt6 nor Qt5 is found, the macro tries to add Qt6 first and if this fails, Qt5. This allows libraries to integrate Qt components without having to know the version.
 ```cmake
 find_qt(REQUIRED COMPONENTS Charts Core DataVisualization Widgets)
+```
+
+### get_cpm
+[CPM.cmake](https://github.com/cpm-cmake/CPM.cmake) is a cross-platform CMake script that adds dependency management capabilities to CMake. It's built as a thin wrapper around CMake's [FetchContent](https://cmake.org/cmake/help/latest/module/FetchContent.html) module that adds version control, caching, a simple API [and more](https://github.com/cpm-cmake/CPM.cmake#comparison-to-pure-fetchcontent--externalproject).
+```cmake
+# Fetch CPM.cmake
+get_cpm()
+
+# Use CPM to add a package
+CPMAddPackage("gh:fmtlib/fmt#7.1.3")
+```
+
+### get_cqtdeployer
+[CQtDeployer](https://github.com/QuasarApp/CQtDeployer) is like a cross-platform version of [windeployqt](https://doc.qt.io/qt-6/windows-deployment.html). It helps you to extract all libraries your executable depends on and to create a launch script for your application.
+```cmake
+# Fetch CQtDeployer for Linux and Windows
+get_cqtdeployer(SYSTEMS Linux Windows)
+
+# Use CQtDeployer to deploy a target
+add_custom_command(
+  TARGET YourTarget
+  POST_BUILD
+  COMMAND ${CQTDEPLOYER_EXECUTABLE} -bin $<TARGET_FILE:YourTarget>)
 ```
 
 ### minify_html
@@ -95,7 +116,7 @@ It sets the following variables:
 ```
 
 ## Toolchain files
-### arm_clang
+### toolchain-arm-clang
 Toolchain file to build ARM target with Clang. Build types are defined as follows
 | Build type   | Flags           |
 | ------------ | --------------- |
@@ -104,7 +125,7 @@ Toolchain file to build ARM target with Clang. Build types are defined as follow
 | RelWithDebug | -Os -g          |
 | MinSizeRel   | -DNDEBUG -Os -g |
 
-### arm_none_eabi_gcc
+### toolchain-arm-none-eabi-gcc
 Toolchain file to build ARM target with arm-none-eabi-gcc. Build types are defined as follows
 | Build type   | Flags           |
 | ------------ | --------------- |
@@ -113,11 +134,11 @@ Toolchain file to build ARM target with arm-none-eabi-gcc. Build types are defin
 | RelWithDebug | -Os -g          |
 | MinSizeRel   | -DNDEBUG -Os -g |
 
-### clang
+### toolchain-clang
 Toolchain file to build x86_64 target with Clang.
 
-### gcc / gcc-12
+### toolchain-gcc / toolchain-gcc-12
 Toolchain file to build x86_64 target with GCC / GCC 12.
 
-### x86_64-w64-mingw32
+### toolchain-x86_64-w64-mingw32
 Toolchain file to build x86_64 target with [MinGW](https://www.mingw-w64.org/).

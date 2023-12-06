@@ -1,5 +1,8 @@
 # Changelog
 
+## 0.6.0
+- Add get_cqtdeployer
+
 ## 0.5.0
 - Add find_qt
 
