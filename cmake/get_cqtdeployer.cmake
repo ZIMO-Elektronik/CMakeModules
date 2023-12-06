@@ -57,6 +57,7 @@ function(get_cqtdeployer)
       file(
         CHMOD
         ${cqtdeployer_linux_SOURCE_DIR}/CQtDeployer.sh
+        ${cqtdeployer_linux_SOURCE_DIR}/bin/CQtDeployer
         ${cqtdeployer_linux_SOURCE_DIR}/QIF/binarycreator
         FILE_PERMISSIONS
         OWNER_READ
