@@ -8,6 +8,9 @@ on:
 
 jobs:
   tests:
-    uses: ZIMO-Elektronik/.github-workflows/.github/workflows/ctest.yml@v0.0.1
-    with:
-      target: all
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4.1.1
+        with:
+          fetch-depth: 0
+      - run: cmake -Bbuild

@@ -24,9 +24,11 @@ SOFTWARE.
 
 include(FetchContent)
 
-FetchContent_Declare(
-  CPM.cmake
-  GIT_REPOSITORY https://github.com/cpm-cmake/CPM.cmake.git
-  GIT_TAG v0.38.6)
-FetchContent_MakeAvailable(CPM.cmake)
-include(${cpm.cmake_SOURCE_DIR}/cmake/CPM.cmake)
+function(get_cpm)
+  FetchContent_Declare(
+    CPM.cmake
+    GIT_REPOSITORY https://github.com/cpm-cmake/CPM.cmake.git
+    GIT_TAG v0.38.7)
+  FetchContent_MakeAvailable(CPM.cmake)
+  include(${cpm.cmake_SOURCE_DIR}/cmake/CPM.cmake)
+endfunction()
