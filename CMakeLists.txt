@@ -14,14 +14,9 @@ include(cmake/version_from_git.cmake)
 version_from_git()
 project(CMakeModules VERSION ${VERSION_FROM_GIT})
 
-option(BUILD_TESTING "" OFF)
+option(CMAKEMODULES_BUILD_TESTING "" OFF)
 
-if(CMAKE_PROJECT_NAME STREQUAL PROJECT_NAME)
+if(CMAKEMODULES_BUILD_TESTING)
   include(CTest)
-endif()
-
-if(BUILD_TESTING
-   AND CMAKE_PROJECT_NAME STREQUAL PROJECT_NAME
-   AND CMAKE_SYSTEM_NAME STREQUAL CMAKE_HOST_SYSTEM_NAME)
   add_subdirectory(tests)
 endif()

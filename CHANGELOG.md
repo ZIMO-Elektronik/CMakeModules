@@ -1,5 +1,8 @@
 # Changelog
 
+## 0.6.1
+- Default BUILD_TESTING=OFF
+
 ## 0.6.0
 - Add get_cqtdeployer
 
