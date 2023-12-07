@@ -14,6 +14,8 @@ include(cmake/version_from_git.cmake)
 version_from_git()
 project(CMakeModules VERSION ${VERSION_FROM_GIT})
 
+option(BUILD_TESTING "" OFF)
+
 if(CMAKE_PROJECT_NAME STREQUAL PROJECT_NAME)
   include(CTest)
 endif()
