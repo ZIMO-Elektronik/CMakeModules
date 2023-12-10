@@ -22,11 +22,13 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 ]]
 
-include(FetchContent)
+include(${CMAKE_CURRENT_LIST_DIR}/get_cpm.cmake)
 
 function(get_cqtdeployer)
   set(multiValueArgs SYSTEMS)
   cmake_parse_arguments(ARG "" "" "${multiValueArgs}" "${ARGN}")
+
+  set(VERSION 1.6.2323)
 
   # Default to HOST
   if(NOT DEFINED ARG_SYSTEMS)
@@ -34,11 +36,15 @@ function(get_cqtdeployer)
   endif()
 
   if(Linux IN_LIST ARG_SYSTEMS)
-    FetchContent_Declare(
+    cpmaddpackage(
+      NAME
       cqtdeployer_linux
-      URL https://github.com/QuasarApp/CQtDeployer/releases/download/v1.6.2323/CQtDeployer_1.6.2323.dd027b2_Linux_x86_64.zip
-      URL_HASH MD5=bf28e90d8d605217499914e37c35ea0d)
-    FetchContent_Populate(cqtdeployer_linux)
+      URL
+      https://github.com/QuasarApp/CQtDeployer/releases/download/v${VERSION}/CQtDeployer_${VERSION}.dd027b2_Linux_x86_64.zip
+      VERSION
+      ${VERSION}
+      DOWNLOAD_ONLY
+      TRUE)
     set(CQTDEPLOYER_LINUX_EXECUTABLE
         ${cqtdeployer_linux_SOURCE_DIR}/CQtDeployer.sh
         PARENT_SCOPE)
@@ -71,11 +77,15 @@ function(get_cqtdeployer)
   endif()
 
   if(Windows IN_LIST ARG_SYSTEMS)
-    FetchContent_Declare(
+    cpmaddpackage(
+      NAME
       cqtdeployer_windows
-      URL https://github.com/QuasarApp/CQtDeployer/releases/download/v1.6.2323/CQtDeployer_1.6.2323.dd027b2_Windows_AMD64.zip
-      URL_HASH MD5=905f2442798002a6e79bc5fe4722796c)
-    FetchContent_Populate(cqtdeployer_windows)
+      URL
+      https://github.com/QuasarApp/CQtDeployer/releases/download/v${VERSION}/CQtDeployer_${VERSION}.dd027b2_Windows_AMD64.zip
+      VERSION
+      ${VERSION}
+      DOWNLOAD_ONLY
+      TRUE)
     set(CQTDEPLOYER_WINDOWS_EXECUTABLE
         ${cqtdeployer_windows_SOURCE_DIR}/CQtDeployer.bat
         PARENT_SCOPE)
