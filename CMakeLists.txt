@@ -1,8 +1,18 @@
 cmake_minimum_required(VERSION 3.25 FATAL_ERROR)
+include(FetchContent)
+
+if(NOT cpm.cmake_SOURCE_DIR)
+  FetchContent_Declare(
+    CPM.cmake
+    GIT_REPOSITORY https://github.com/cpm-cmake/CPM.cmake.git
+    GIT_TAG v0.38.7)
+  FetchContent_MakeAvailable(CPM.cmake)
+  include(${cpm.cmake_SOURCE_DIR}/cmake/CPM.cmake)
+endif()
 
 include(cmake/add_clang_format_target.cmake)
+include(cmake/add_compile_link_options.cmake)
 include(cmake/find_qt.cmake)
-include(cmake/get_cpm.cmake)
 include(cmake/get_cqtdeployer.cmake)
 include(cmake/minify_html.cmake)
 include(cmake/sanitize.cmake)

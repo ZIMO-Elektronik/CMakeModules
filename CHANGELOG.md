@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.7.0
+- Add add_compile_link_options
+- CPM gets added implicitly
+
 ## 0.6.1
 - Default BUILD_TESTING=OFF
 
