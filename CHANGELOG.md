@@ -3,6 +3,7 @@
 ## 0.7.0
 - Add add_compile_link_options
 - CPM gets added implicitly
+- Change sanitize to macro
 
 ## 0.6.1
 - Default BUILD_TESTING=OFF
