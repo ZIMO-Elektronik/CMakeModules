@@ -22,11 +22,11 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 ]]
 
-function(sanitize SANITIZERS)
+macro(sanitize SANITIZERS)
   set(CMAKE_C_FLAGS
       "${CMAKE_C_FLAGS} -fsanitize=${SANITIZERS}"
       PARENT_SCOPE)
   set(CMAKE_CXX_FLAGS
       "${CMAKE_CXX_FLAGS} -fsanitize=${SANITIZERS}"
       PARENT_SCOPE)
-endfunction()
+endmacro()
