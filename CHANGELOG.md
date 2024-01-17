@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.7.0
+- Add add_compile_link_options
+- CPM gets added implicitly
+
 ## 0.6.1
 - Default BUILD_TESTING=OFF
 
@@ -25,7 +29,7 @@
 - Fix target_compile_link_options
 
 ## 0.2.0
-- Fix spelling of `sanitize`
+- Fix spelling of sanitize
 
 ## 0.1.2
 - `-Werror=` argument `-Werror=implicit-function-declaration` is not valid for C++

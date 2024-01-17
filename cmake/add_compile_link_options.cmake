@@ -22,13 +22,7 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 ]]
 
-include(FetchContent)
-
-function(get_cpm)
-  FetchContent_Declare(
-    CPM.cmake
-    GIT_REPOSITORY https://github.com/cpm-cmake/CPM.cmake.git
-    GIT_TAG v0.38.7)
-  FetchContent_MakeAvailable(CPM.cmake)
-  include(${cpm.cmake_SOURCE_DIR}/cmake/CPM.cmake)
+function(add_compile_link_options)
+  add_compile_options(${ARGN})
+  add_link_options(${ARGN})
 endfunction()

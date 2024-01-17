@@ -22,8 +22,6 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 ]]
 
-include(${CMAKE_CURRENT_LIST_DIR}/get_cpm.cmake)
-
 function(get_cqtdeployer)
   set(multiValueArgs SYSTEMS)
   cmake_parse_arguments(ARG "" "" "${multiValueArgs}" "${ARGN}")

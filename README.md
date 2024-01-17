@@ -11,9 +11,10 @@ CMakeModules bundles CMake modules and toolchain files.
   <ol>
     <li><a href="#modules">Modules</a></li>
       <ul>
+        <li><a href="#cpmcmake">CPM.cmake</a></li>
+        <li><a href="#add_compile_link_options">add_compile_link_options</a></li>
         <li><a href="#add_clang_format_target">add_clang_format_target</a></li>
         <li><a href="#find_qt">find_qt</a></li>
-        <li><a href="#get_cpm">get_cpm</a></li>
         <li><a href="#get_cqtdeployer">get_cqtdeployer</a></li>
         <li><a href="#minify_html">minify_html</a></li>
         <li><a href="#sanitize">sanitize</a></li>
@@ -34,6 +35,16 @@ CMakeModules bundles CMake modules and toolchain files.
 </details>
 
 ## Modules
+### CPM.cmake
+[CPM.cmake](https://github.com/cpm-cmake/CPM.cmake) is a cross-platform CMake script that adds dependency management capabilities to CMake. It's built as a thin wrapper around CMake's [FetchContent](https://cmake.org/cmake/help/latest/module/FetchContent.html) module that adds version control, caching, a simple API [and more](https://github.com/cpm-cmake/CPM.cmake#comparison-to-pure-fetchcontent--externalproject).
+```cmake
+# Use CPM to add a package
+CPMAddPackage("gh:fmtlib/fmt#7.1.3")
+```
+
+### add_compile_link_options
+Wrapper around [add_compile_options](https://cmake.org/cmake/help/latest/command/add_compile_options.html) and [add_link_options](https://cmake.org/cmake/help/latest/command/add_link_options.html). Simply invokes both commands with all arguments.
+
 ### add_clang_format_target
 Adds a custom target specifically used to run [clang-format](https://clang.llvm.org/docs/ClangFormat.html).
 ```cmake
@@ -47,16 +58,6 @@ add_clang_format_target(FormatTarget OPTIONS -i --style=llvm FILES main.cpp func
 Macro which conditionally adds Qt6 or Qt5 components depending on which version is already present in the configuration. If neither Qt6 nor Qt5 is found, the macro tries to add Qt6 first and if this fails, Qt5. This allows libraries to integrate Qt components without having to know the version.
 ```cmake
 find_qt(REQUIRED COMPONENTS Charts Core DataVisualization Widgets)
-```
-
-### get_cpm
-[CPM.cmake](https://github.com/cpm-cmake/CPM.cmake) is a cross-platform CMake script that adds dependency management capabilities to CMake. It's built as a thin wrapper around CMake's [FetchContent](https://cmake.org/cmake/help/latest/module/FetchContent.html) module that adds version control, caching, a simple API [and more](https://github.com/cpm-cmake/CPM.cmake#comparison-to-pure-fetchcontent--externalproject).
-```cmake
-# Fetch CPM.cmake
-get_cpm()
-
-# Use CPM to add a package
-CPMAddPackage("gh:fmtlib/fmt#7.1.3")
 ```
 
 ### get_cqtdeployer
