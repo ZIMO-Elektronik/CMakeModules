@@ -42,7 +42,7 @@ function(get_qt)
 
   cpmaddpackage(
     NAME
-    qt
+    qt6
     GIT_REPOSITORY
     https://code.qt.io/qt/qt5.git
     VERSION
@@ -54,31 +54,36 @@ function(get_qt)
 
   execute_process(
     COMMAND
-      ${CMAKE_COMMAND} -Bbuild -GNinja -DCMAKE_INSTALL_PREFIX=${qt_BINARY_DIR} #
+      ${CMAKE_COMMAND} -Bbuild -GNinja
+      -DCMAKE_INSTALL_PREFIX=${qt6_BINARY_DIR} #
       -DQT_DEBUG_FIND_PACKAGE=ON #
       ${ARG_CMAKE_OPTIONS}
     WORKING_DIRECTORY
-      ${qt_SOURCE_DIR} #
+      ${qt6_SOURCE_DIR} #
       COMMAND_ECHO STDOUT #
       COMMAND_ERROR_IS_FATAL ANY)
 
   execute_process(
     COMMAND
-      ${CMAKE_COMMAND} --build ${qt_SOURCE_DIR}/build --parallel #
+      ${CMAKE_COMMAND} --build ${qt6_SOURCE_DIR}/build --parallel #
       COMMAND_ECHO STDOUT #
       COMMAND_ERROR_IS_FATAL ANY)
 
   execute_process(
     COMMAND
-      ${CMAKE_COMMAND} --install ${qt_SOURCE_DIR}/build #
+      ${CMAKE_COMMAND} --install ${qt6_SOURCE_DIR}/build #
       COMMAND_ECHO STDOUT #
       COMMAND_ERROR_IS_FATAL ANY)
+
+  set(QT_BINARY_DIR
+      ${qt6_BINARY_DIR}
+      PARENT_SCOPE)
 
   set(Qt6_DIR
-      ${qt_BINARY_DIR}/lib/cmake/Qt6
+      ${qt6_BINARY_DIR}/lib/cmake/Qt6
       PARENT_SCOPE)
 
   set(CMAKE_FIND_ROOT_PATH
-      ${CMAKE_FIND_ROOT_PATH} ${qt_BINARY_DIR}
+      ${CMAKE_FIND_ROOT_PATH} ${qt6_BINARY_DIR}
       PARENT_SCOPE)
 endfunction()
