@@ -1,5 +1,9 @@
 # Changelog
 
+##
+- Add get_qt
+- Remove x86_64-w64-mingw32 toolchain file
+
 ## 0.7.0
 - Add add_compile_link_options
 - CPM gets added implicitly

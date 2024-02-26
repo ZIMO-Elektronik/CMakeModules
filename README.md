@@ -29,7 +29,6 @@ CMakeModules bundles CMake modules and toolchain files.
         <li><a href="#toolchain-arm-none-eabi-gcc">toolchain-arm-none-eabi-gcc</a></li>
         <li><a href="#toolchain-clang">toolchain-clang</a></li>
         <li><a href="#toolchain-gcc--toolchain-gcc-12">toolchain-gcc--toolchain-gcc-12</a></li>
-        <li><a href="#toolchain-x86_64-w64-mingw32">toolchain-x86_64-w64-mingw32</a></li>
       </ul>
   </ol>
 </details>
@@ -140,6 +139,3 @@ Toolchain file to build x86_64 target with Clang.
 
 ### toolchain-gcc / toolchain-gcc-12
 Toolchain file to build x86_64 target with GCC / GCC 12.
-
-### toolchain-x86_64-w64-mingw32
-Toolchain file to build x86_64 target with [MinGW](https://www.mingw-w64.org/).
