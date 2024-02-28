@@ -2,7 +2,7 @@
   "version": "2.0.0",
   "tasks": [
     {
-      "label": "CMake CMakeModules",
+      "label": "cmake CMakeModules",
       "type": "shell",
       "isBackground": true,
       "command": "cmake -Bbuild -GNinja"

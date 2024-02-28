@@ -75,15 +75,18 @@ function(get_qt)
       COMMAND_ECHO STDOUT #
       COMMAND_ERROR_IS_FATAL ANY)
 
+  # Set QT_BINARY_DIR
   set(QT_BINARY_DIR
       ${qt6_BINARY_DIR}
       PARENT_SCOPE)
 
+  # Set Qt6_DIR (used by Qt)
   set(Qt6_DIR
       ${qt6_BINARY_DIR}/lib/cmake/Qt6
       PARENT_SCOPE)
 
+  # Prepend qt6 path to CMAKE_FIND_ROOT_PATH
   set(CMAKE_FIND_ROOT_PATH
-      ${CMAKE_FIND_ROOT_PATH} ${qt6_BINARY_DIR}
+      ${qt6_BINARY_DIR} ${CMAKE_FIND_ROOT_PATH}
       PARENT_SCOPE)
 endfunction()

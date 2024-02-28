@@ -16,6 +16,7 @@ CMakeModules bundles CMake modules and toolchain files.
         <li><a href="#add_clang_format_target">add_clang_format_target</a></li>
         <li><a href="#find_qt">find_qt</a></li>
         <li><a href="#get_cqtdeployer">get_cqtdeployer</a></li>
+        <li><a href="#get_qt">get_qt</a></li>
         <li><a href="#minify_html">minify_html</a></li>
         <li><a href="#sanitize">sanitize</a></li>
         <li><a href="#target_common_warnings">target_common_warnings</a></li>
@@ -60,16 +61,22 @@ find_qt(REQUIRED COMPONENTS Charts Core DataVisualization Widgets)
 ```
 
 ### get_cqtdeployer
-[CQtDeployer](https://github.com/QuasarApp/CQtDeployer) is like a cross-platform version of [windeployqt](https://doc.qt.io/qt-6/windows-deployment.html). It helps you to extract all libraries your executable depends on and to create a launch script for your application.
+[CQtDeployer](https://github.com/QuasarApp/CQtDeployer) is like a cross-platform version of [windeployqt](https://doc.qt.io/qt-6/windows-deployment.html). It helps you to extract all libraries your executable depends on and to create a launch script (or installer) for your application.
 ```cmake
 # Fetch CQtDeployer for Linux and Windows
-get_cqtdeployer(SYSTEMS Linux Windows)
+get_cqtdeployer(VERSION 1.6.2345 SYSTEMS Linux Windows)
 
 # Use CQtDeployer to deploy a target
 add_custom_command(
   TARGET YourTarget
   POST_BUILD
   COMMAND ${CQTDEPLOYER_EXECUTABLE} -bin $<TARGET_FILE:YourTarget>)
+```
+
+### get_qt
+[Qt](https://www.qt.io/) TODO
+```cmake
+TODO
 ```
 
 ### minify_html

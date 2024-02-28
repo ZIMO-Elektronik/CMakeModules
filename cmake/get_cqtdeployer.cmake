@@ -23,24 +23,39 @@ SOFTWARE.
 ]]
 
 function(get_cqtdeployer)
+  set(oneValueArgs VERSION)
   set(multiValueArgs SYSTEMS)
-  cmake_parse_arguments(ARG "" "" "${multiValueArgs}" "${ARGN}")
+  cmake_parse_arguments(ARG "" "${oneValueArgs}" "${multiValueArgs}" "${ARGN}")
 
-  set(VERSION 1.6.2323)
+  # Default to version 1.6.2345
+  if(NOT DEFINED ARG_VERSION)
+    set(ARG_VERSION 1.6.2345)
+  endif()
 
   # Default to HOST
   if(NOT DEFINED ARG_SYSTEMS)
     set(ARG_SYSTEMS ${CMAKE_HOST_SYSTEM_NAME})
   endif()
 
+  find_package(Git)
+
+  # Get SHA1 for downloading releases
+  execute_process(
+    COMMAND ${GIT_EXECUTABLE} ls-remote
+            https://github.com/QuasarApp/CQtDeployer.git -b v${ARG_VERSION}
+    OUTPUT_VARIABLE GIT_OUTPUT
+    ERROR_VARIABLE GIT_ERROR
+    OUTPUT_STRIP_TRAILING_WHITESPACE ERROR_STRIP_TRAILING_WHITESPACE)
+  string(SUBSTRING ${GIT_OUTPUT} 0 7 SHA1)
+
   if(Linux IN_LIST ARG_SYSTEMS)
     cpmaddpackage(
       NAME
       cqtdeployer_linux
       URL
-      https://github.com/QuasarApp/CQtDeployer/releases/download/v${VERSION}/CQtDeployer_${VERSION}.dd027b2_Linux_x86_64.zip
+      https://github.com/QuasarApp/CQtDeployer/releases/download/v${ARG_VERSION}/CQtDeployer_${ARG_VERSION}.${SHA1}_Linux_x86_64.zip
       VERSION
-      ${VERSION}
+      ${ARG_VERSION}
       DOWNLOAD_ONLY
       TRUE)
     set(CQTDEPLOYER_LINUX_EXECUTABLE
@@ -79,9 +94,9 @@ function(get_cqtdeployer)
       NAME
       cqtdeployer_windows
       URL
-      https://github.com/QuasarApp/CQtDeployer/releases/download/v${VERSION}/CQtDeployer_${VERSION}.dd027b2_Windows_AMD64.zip
+      https://github.com/QuasarApp/CQtDeployer/releases/download/v${ARG_VERSION}/CQtDeployer_${ARG_VERSION}.${SHA1}_Windows_AMD64.zip
       VERSION
-      ${VERSION}
+      ${ARG_VERSION}
       DOWNLOAD_ONLY
       TRUE)
     set(CQTDEPLOYER_WINDOWS_EXECUTABLE
