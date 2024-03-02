@@ -49,47 +49,86 @@ function(get_cqtdeployer)
   string(SUBSTRING ${GIT_OUTPUT} 0 7 SHA1)
 
   if(Linux IN_LIST ARG_SYSTEMS)
-    cpmaddpackage(
-      NAME
-      cqtdeployer_linux
-      URL
-      https://github.com/QuasarApp/CQtDeployer/releases/download/v${ARG_VERSION}/CQtDeployer_${ARG_VERSION}.${SHA1}_Linux_x86_64.zip
-      VERSION
-      ${ARG_VERSION}
-      DOWNLOAD_ONLY
-      TRUE)
-    set(CQTDEPLOYER_LINUX_EXECUTABLE
-        ${cqtdeployer_linux_SOURCE_DIR}/CQtDeployer.sh
-        PARENT_SCOPE)
-    set(BINARYCREATOR_LINUX_EXECUTABLE
-        ${cqtdeployer_linux_SOURCE_DIR}/QIF/binarycreator
-        PARENT_SCOPE)
-    if(Linux STREQUAL CMAKE_HOST_SYSTEM_NAME)
-      set(CQTDEPLOYER_EXECUTABLE
+    # Version check
+    if(${ARG_VERSION} VERSION_LESS 1.5.4.13)
+      message(
+        FATAL_ERROR
+          "CQtDeployer versions below 1.5.4.13 not supported for Linux")
+    endif()
+
+    # Versions below 1.6.2181 follow an old naming scheme
+    if(${ARG_VERSION} VERSION_LESS 1.6.2181)
+      cpmaddpackage(
+        NAME
+        cqtdeployer_linux
+        URL
+        https://github.com/QuasarApp/CQtDeployer/releases/download/v${ARG_VERSION}/CQtDeployer_${ARG_VERSION}_Linux_x86_64.zip
+        VERSION
+        ${ARG_VERSION}
+        DOWNLOAD_ONLY
+        TRUE)
+      set(CQTDEPLOYER_LINUX_EXECUTABLE
+          ${cqtdeployer_linux_SOURCE_DIR}/cqtdeployer.sh
+          PARENT_SCOPE)
+      set(BINARYCREATOR_LINUX_EXECUTABLE
+          ${cqtdeployer_linux_SOURCE_DIR}/QIF/binarycreator.sh
+          PARENT_SCOPE)
+      if(Linux STREQUAL CMAKE_HOST_SYSTEM_NAME)
+        set(CQTDEPLOYER_EXECUTABLE
+            ${cqtdeployer_linux_SOURCE_DIR}/cqtdeployer.sh
+            PARENT_SCOPE)
+        set(BINARYCREATOR_EXECUTABLE
+            ${cqtdeployer_linux_SOURCE_DIR}/QIF/binarycreator.sh
+            PARENT_SCOPE)
+      endif()
+    else()
+      cpmaddpackage(
+        NAME
+        cqtdeployer_linux
+        URL
+        https://github.com/QuasarApp/CQtDeployer/releases/download/v${ARG_VERSION}/CQtDeployer_${ARG_VERSION}.${SHA1}_Linux_x86_64.zip
+        VERSION
+        ${ARG_VERSION}
+        DOWNLOAD_ONLY
+        TRUE)
+      set(CQTDEPLOYER_LINUX_EXECUTABLE
           ${cqtdeployer_linux_SOURCE_DIR}/CQtDeployer.sh
           PARENT_SCOPE)
-      set(BINARYCREATOR_EXECUTABLE
+      set(BINARYCREATOR_LINUX_EXECUTABLE
           ${cqtdeployer_linux_SOURCE_DIR}/QIF/binarycreator
           PARENT_SCOPE)
-
-      # On Linux we additionally need to add permissions
-      file(
-        CHMOD
-        ${cqtdeployer_linux_SOURCE_DIR}/CQtDeployer.sh
-        ${cqtdeployer_linux_SOURCE_DIR}/bin/CQtDeployer
-        ${cqtdeployer_linux_SOURCE_DIR}/QIF/binarycreator
-        FILE_PERMISSIONS
-        OWNER_READ
-        OWNER_WRITE
-        OWNER_EXECUTE
-        GROUP_READ
-        GROUP_EXECUTE
-        WORLD_READ
-        WORLD_EXECUTE)
+      if(Linux STREQUAL CMAKE_HOST_SYSTEM_NAME)
+        set(CQTDEPLOYER_EXECUTABLE
+            ${cqtdeployer_linux_SOURCE_DIR}/CQtDeployer.sh
+            PARENT_SCOPE)
+        set(BINARYCREATOR_EXECUTABLE
+            ${cqtdeployer_linux_SOURCE_DIR}/QIF/binarycreator
+            PARENT_SCOPE)
+      endif()
     endif()
+
+    # On Linux we additionally need to add permissions
+    file(
+      CHMOD_RECURSE
+      ${cqtdeployer_linux_SOURCE_DIR}
+      PERMISSIONS
+      OWNER_READ
+      OWNER_WRITE
+      OWNER_EXECUTE
+      GROUP_READ
+      GROUP_EXECUTE
+      WORLD_READ
+      WORLD_EXECUTE)
   endif()
 
   if(Windows IN_LIST ARG_SYSTEMS)
+    # Version check
+    if(${ARG_VERSION} VERSION_LESS 1.6.2227)
+      message(
+        FATAL_ERROR
+          "CQtDeployer versions below 1.6.2227 not supported for Windows")
+    endif()
+
     cpmaddpackage(
       NAME
       cqtdeployer_windows
