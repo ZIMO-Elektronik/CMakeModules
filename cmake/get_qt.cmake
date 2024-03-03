@@ -80,12 +80,17 @@ function(get_qt)
       ${qt6_BINARY_DIR}
       PARENT_SCOPE)
 
-  # Set Qt6_DIR (used by Qt)
+  # Set Qt6_DIR (https://bugreports.qt.io/browse/QTBUG-97615)
   set(Qt6_DIR
       ${qt6_BINARY_DIR}/lib/cmake/Qt6
       PARENT_SCOPE)
 
-  # Prepend qt6 path to CMAKE_FIND_ROOT_PATH
+  # Prepend Qt6 path to CMAKE_PREFIX_PATH
+  set(CMAKE_PREFIX_PATH
+      ${qt6_BINARY_DIR} ${CMAKE_PREFIX_PATH}
+      PARENT_SCOPE)
+
+  # Prepend Qt6 path to CMAKE_FIND_ROOT_PATH (in case of cross-compilation)
   set(CMAKE_FIND_ROOT_PATH
       ${qt6_BINARY_DIR} ${CMAKE_FIND_ROOT_PATH}
       PARENT_SCOPE)
