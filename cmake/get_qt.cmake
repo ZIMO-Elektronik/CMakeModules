@@ -31,8 +31,10 @@ function(get_qt)
   if(NOT DEFINED ARG_VERSION)
     set(ARG_VERSION 6.6.1)
   endif()
-  if(ARG_VERSION VERSION_LESS 6.0.0)
-    message(FATAL_ERROR "Qt versions below 6.0.0 not supported")
+  if(ARG_VERSION MATCHES "^(0|[1-9][0-9]*)[.](0|[1-9][0-9]*)[.](0|[1-9][0-9]*)")
+    if(${CMAKE_MATCH_1}.${CMAKE_MATCH_2}.${CMAKE_MATCH_3} VERSION_LESS 6.0.0)
+      message(FATAL_ERROR "Qt versions below 6.0.0 not supported")
+    endif()
   endif()
 
   # qtbase is mandatory
