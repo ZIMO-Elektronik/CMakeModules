@@ -1,5 +1,8 @@
 cmake_minimum_required(VERSION 3.25 FATAL_ERROR)
 include(FetchContent)
+set(CMAKE_MODULE_PATH
+    ${CMAKE_MODULE_PATH} ${CMAKE_CURRENT_LIST_DIR}/cmake
+    CACHE STRING "Append CMakeModules path to CMAKE_MODULE_PATH" FORCE)
 
 if(NOT cpm.cmake_SOURCE_DIR)
   FetchContent_Declare(

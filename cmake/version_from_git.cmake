@@ -23,7 +23,7 @@ SOFTWARE.
 ]]
 
 function(version_from_git)
-  find_package(Git)
+  find_package(Git REQUIRED)
 
   # Run git describe --tags
   execute_process(

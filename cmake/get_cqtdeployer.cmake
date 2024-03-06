@@ -37,7 +37,7 @@ function(get_cqtdeployer)
     set(ARG_SYSTEMS ${CMAKE_HOST_SYSTEM_NAME})
   endif()
 
-  find_package(Git)
+  find_package(Git REQUIRED)
 
   # Get SHA1 for downloading releases
   execute_process(
