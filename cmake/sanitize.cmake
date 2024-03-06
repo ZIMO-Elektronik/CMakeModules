@@ -22,14 +22,23 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 ]]
 
-function(sanitize SANITIZERS)
-  cmake_policy(PUSH)
-  cmake_policy(SET CMP0126 OLD)
-  set(CMAKE_C_FLAGS
-      "${CMAKE_C_FLAGS} -fsanitize=${SANITIZERS}"
-      CACHE STRING "Append -fsanitize=${SANITIZERS} to CMAKE_C_FLAGS" FORCE)
-  set(CMAKE_CXX_FLAGS
-      "${CMAKE_CXX_FLAGS} -fsanitize=${SANITIZERS}"
-      CACHE STRING "Append -fsanitize=${SANITIZERS} to CMAKE_CXX_FLAGS" FORCE)
-  cmake_policy(POP)
-endfunction()
+macro(sanitize SANITIZERS)
+  # Set in current scope
+  set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -fsanitize=${SANITIZERS}")
+  set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fsanitize=${SANITIZERS}")
+  set(LDFLAGS "${LDFLAGS} -fsanitize=${SANITIZERS}")
+
+  # Set in PARENT_SCOPE
+  get_directory_property(HAS_PARENT_SCOPE PARENT_DIRECTORY)
+  if(HAS_PARENT_SCOPE)
+    set(CMAKE_C_FLAGS
+        ${CMAKE_C_FLAGS}
+        PARENT_SCOPE)
+    set(CMAKE_CXX_FLAGS
+        ${CMAKE_CXX_FLAGS}
+        PARENT_SCOPE)
+    set(LDFLAGS
+        ${LDFLAGS}
+        PARENT_SCOPE)
+  endif()
+endmacro()
