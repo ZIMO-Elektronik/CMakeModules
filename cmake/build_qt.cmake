@@ -22,7 +22,7 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 ]]
 
-function(get_qt)
+function(build_qt)
   set(oneValueArgs VERSION)
   set(multiValueArgs MODULES CMAKE_OPTIONS)
   cmake_parse_arguments(ARG "" "${oneValueArgs}" "${multiValueArgs}" "${ARGN}")
