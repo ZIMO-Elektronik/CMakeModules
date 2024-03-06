@@ -23,10 +23,13 @@ SOFTWARE.
 ]]
 
 function(sanitize SANITIZERS)
+  cmake_policy(PUSH)
+  cmake_policy(SET CMP0126 OLD)
   set(CMAKE_C_FLAGS
       "${CMAKE_C_FLAGS} -fsanitize=${SANITIZERS}"
       CACHE STRING "Append -fsanitize=${SANITIZERS} to CMAKE_C_FLAGS" FORCE)
   set(CMAKE_CXX_FLAGS
       "${CMAKE_CXX_FLAGS} -fsanitize=${SANITIZERS}"
       CACHE STRING "Append -fsanitize=${SANITIZERS} to CMAKE_CXX_FLAGS" FORCE)
+  cmake_policy(POP)
 endfunction()
