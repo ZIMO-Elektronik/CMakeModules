@@ -31,9 +31,9 @@ endif()
 
 # Default to HOST
 if(CQtDeployer_FIND_COMPONENTS)
-  set(SYSTEMS ${CQtDeployer_FIND_COMPONENTS})
+  set(COMPONENTS ${CQtDeployer_FIND_COMPONENTS})
 else()
-  set(SYSTEMS ${CMAKE_HOST_SYSTEM_NAME})
+  set(COMPONENTS ${CMAKE_HOST_SYSTEM_NAME})
 endif()
 
 find_package(Git REQUIRED)
@@ -47,7 +47,7 @@ execute_process(
   OUTPUT_STRIP_TRAILING_WHITESPACE ERROR_STRIP_TRAILING_WHITESPACE)
 string(SUBSTRING ${GIT_OUTPUT} 0 7 SHA1)
 
-if(Linux IN_LIST SYSTEMS)
+if(Linux IN_LIST COMPONENTS)
   # Version check
   if(${VERSION} VERSION_LESS 1.5.4.13)
     message(
@@ -109,7 +109,7 @@ if(Linux IN_LIST SYSTEMS)
     WORLD_EXECUTE)
 endif()
 
-if(Windows IN_LIST SYSTEMS)
+if(Windows IN_LIST COMPONENTS)
   # Version check
   if(${VERSION} VERSION_LESS 1.6.2227)
     message(
