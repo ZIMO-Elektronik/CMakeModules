@@ -2,7 +2,7 @@
 
 [![tests](https://github.com/ZIMO-Elektronik/CMakeModules/actions/workflows/tests.yml/badge.svg)](https://github.com/ZIMO-Elektronik/CMakeModules/actions/workflows/tests.yml)
 
-<img src="data/images/logo.png" width="15%" align="right"/>
+<img src="data/images/logo.svg" width="15%" align="right"/>
 
 CMakeModules bundles CMake modules and toolchain files.
 
@@ -12,10 +12,10 @@ CMakeModules bundles CMake modules and toolchain files.
     <li><a href="#modules">Modules</a></li>
       <ul>
         <li><a href="#cpmcmake">CPM.cmake</a></li>
-        <li><a href="#add_compile_link_options">add_compile_link_options</a></li>
         <li><a href="#add_clang_format_target">add_clang_format_target</a></li>
+        <li><a href="#add_compile_link_options">add_compile_link_options</a></li>
+        <li><a href="#build_qt">build_qt</a></li>
         <li><a href="#find_qt">find_qt</a></li>
-        <li><a href="#get_cqtdeployer">get_cqtdeployer</a></li>
         <li><a href="#minify_html">minify_html</a></li>
         <li><a href="#sanitize">sanitize</a></li>
         <li><a href="#target_common_warnings">target_common_warnings</a></li>
@@ -23,54 +23,60 @@ CMakeModules bundles CMake modules and toolchain files.
         <li><a href="#target_unity_build">target_unity_build</a></li>
         <li><a href="#version_from_git">version_from_git</a></li>
       </ul>
+    <li><a href="#findpackagename-files">Find&lt;PackageName&gt; files</a></li>
+      <ul>
+        <li><a href="#findcqtdeployer">FindCQtDeployer</a></li>
+      </ul>
     <li><a href="#toolchain-files">Toolchain files</a></li>
       <ul>
         <li><a href="#toolchain-arm-clang">toolchain-arm-clang</a></li>
         <li><a href="#toolchain-arm-none-eabi-gcc">toolchain-arm-none-eabi-gcc</a></li>
         <li><a href="#toolchain-clang">toolchain-clang</a></li>
         <li><a href="#toolchain-gcc--toolchain-gcc-12">toolchain-gcc--toolchain-gcc-12</a></li>
-        <li><a href="#toolchain-x86_64-w64-mingw32">toolchain-x86_64-w64-mingw32</a></li>
+        <li><a href="#toolchain-x86_64-w64-mingw32-gcc">toolchain-x86_64-w64-mingw32-gcc</a></li>
       </ul>
   </ol>
 </details>
 
 ## Modules
 ### CPM.cmake
-[CPM.cmake](https://github.com/cpm-cmake/CPM.cmake) is a cross-platform CMake script that adds dependency management capabilities to CMake. It's built as a thin wrapper around CMake's [FetchContent](https://cmake.org/cmake/help/latest/module/FetchContent.html) module that adds version control, caching, a simple API [and more](https://github.com/cpm-cmake/CPM.cmake#comparison-to-pure-fetchcontent--externalproject).
+[CPM.cmake](https://github.com/cpm-cmake/CPM.cmake) is a cross-platform CMake script that adds dependency management capabilities to CMake. It's built as a thin wrapper around CMake's [FetchContent](https://cmake.org/cmake/help/latest/module/FetchContent.html) module that adds version control, caching, a simple API [and more](https://github.com/cpm-cmake/CPM.cmake#comparison-to-pure-fetchcontent--externalproject). The CPM module gets implicitly included.
 ```cmake
 # Use CPM to add a package
 CPMAddPackage("gh:fmtlib/fmt#7.1.3")
 ```
 
-### add_compile_link_options
-Wrapper around [add_compile_options](https://cmake.org/cmake/help/latest/command/add_compile_options.html) and [add_link_options](https://cmake.org/cmake/help/latest/command/add_link_options.html). Simply invokes both commands with all arguments.
-
 ### add_clang_format_target
 Adds a custom target specifically used to run [clang-format](https://clang.llvm.org/docs/ClangFormat.html).
 ```cmake
-add_clang_format_target(<name> OPTIONS [<options...>] FILES [<files...>])
+add_clang_format_target(<name> OPTIONS [options...] FILES [files...])
 
 # e.g.
 add_clang_format_target(FormatTarget OPTIONS -i --style=llvm FILES main.cpp func.cpp)
+```
+
+### add_compile_link_options
+Wrapper around [add_compile_options](https://cmake.org/cmake/help/latest/command/add_compile_options.html) and [add_link_options](https://cmake.org/cmake/help/latest/command/add_link_options.html). Simply invokes both commands with all arguments.
+
+### build_qt
+Build [Qt6](https://www.qt.io/) from source. For more information, please read the article [Building Qt 6 from Git](https://wiki.qt.io/Building_Qt_6_from_Git) on the official wiki.
+```cmake
+build_qt(<version> MODULES [modules...] CMAKE_OPTIONS [cmake_options...])
+
+build_qt(
+  6.6.1
+  MODULES
+  qtbase
+  qtsvg
+  CMAKE_OPTIONS
+  -DCMAKE_BUILD_TYPE=Release
+  -DBUILD_SHARED_LIBS=ON)
 ```
 
 ### find_qt
 Macro which conditionally adds Qt6 or Qt5 components depending on which version is already present in the configuration. If neither Qt6 nor Qt5 is found, the macro tries to add Qt6 first and if this fails, Qt5. This allows libraries to integrate Qt components without having to know the version.
 ```cmake
 find_qt(REQUIRED COMPONENTS Charts Core DataVisualization Widgets)
-```
-
-### get_cqtdeployer
-[CQtDeployer](https://github.com/QuasarApp/CQtDeployer) is like a cross-platform version of [windeployqt](https://doc.qt.io/qt-6/windows-deployment.html). It helps you to extract all libraries your executable depends on and to create a launch script for your application.
-```cmake
-# Fetch CQtDeployer for Linux and Windows
-get_cqtdeployer(SYSTEMS Linux Windows)
-
-# Use CQtDeployer to deploy a target
-add_custom_command(
-  TARGET YourTarget
-  POST_BUILD
-  COMMAND ${CQTDEPLOYER_EXECUTABLE} -bin $<TARGET_FILE:YourTarget>)
 ```
 
 ### minify_html
@@ -80,9 +86,9 @@ minify_html(index.html ${CMAKE_BINARY_DIR}/index.html)
 ```
 
 ### sanitize
-Add [-fsanitize](https://gcc.gnu.org/onlinedocs/gcc/Instrumentation-Options.html) options to the current directory and below.
+Add [-fsanitize](https://gcc.gnu.org/onlinedocs/gcc/Instrumentation-Options.html) options starting from current directory and above.
 ```cmake
-sanitize("address,undefined")
+sanitize(address,undefined)
 ```
 
 ### target_common_warnings
@@ -116,6 +122,20 @@ It sets the following variables:
     fetch-depth: 0
 ```
 
+## Find&lt;PackageName&gt; files
+### FindCQtDeployer
+[CQtDeployer](https://github.com/QuasarApp/CQtDeployer) is like a cross-platform version of [windeployqt](https://doc.qt.io/qt-6/windows-deployment.html). It helps you to extract all libraries your executable depends on and to create a launch script (or installer) for your application.
+```cmake
+# Fetch CQtDeployer for Linux
+find_package(CQtDeployer 1.6.2337 REQUIRED COMPONENTS Linux)
+
+# Use CQtDeployer to deploy a target
+add_custom_command(
+  TARGET YourTarget
+  POST_BUILD
+  COMMAND ${CQTDEPLOYER_EXECUTABLE} -bin $<TARGET_FILE:YourTarget>)
+```
+
 ## Toolchain files
 ### toolchain-arm-clang
 Toolchain file to build ARM target with Clang. Build types are defined as follows
@@ -141,5 +161,5 @@ Toolchain file to build x86_64 target with Clang.
 ### toolchain-gcc / toolchain-gcc-12
 Toolchain file to build x86_64 target with GCC / GCC 12.
 
-### toolchain-x86_64-w64-mingw32
-Toolchain file to build x86_64 target with [MinGW](https://www.mingw-w64.org/).
+### toolchain-x86_64-w64-mingw32-gcc
+Toolchain file to cross-compile x86_64 target with [mingw-w64](https://packages.ubuntu.com/jammy/mingw-w64). This file specifically targets [Ubuntu 22.04](https://releases.ubuntu.com/jammy).

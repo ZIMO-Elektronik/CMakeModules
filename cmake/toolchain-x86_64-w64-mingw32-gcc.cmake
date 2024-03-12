@@ -1,7 +1,7 @@
 #[[
 MIT License
 
-Copyright (c) 2023 ZIMO Elektronik
+Copyright (c) 2024 ZIMO Elektronik
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -26,10 +26,16 @@ set(CMAKE_SYSTEM_NAME Windows)
 set(CMAKE_SYSTEM_PROCESSOR x86_64)
 
 # Find x86_64-w64-mingw32-gcc
-set(CMAKE_C_COMPILER x86_64-w64-mingw32-gcc)
-set(CMAKE_CXX_COMPILER x86_64-w64-mingw32-g++)
+find_program(C_COMPILER x86_64-w64-mingw32-gcc-posix REQUIRED)
+find_program(CXX_COMPILER x86_64-w64-mingw32-g++-posix REQUIRED)
+find_program(AR x86_64-w64-mingw32-gcc-ar-posix REQUIRED)
 
-# Root path
+set(CMAKE_ASM_COMPILER ${C_COMPILER})
+set(CMAKE_C_COMPILER ${C_COMPILER})
+set(CMAKE_CXX_COMPILER ${CXX_COMPILER})
+set(CMAKE_AR ${AR})
+
+set(CMAKE_SYSROOT /usr/x86_64-w64-mingw32)
 set(CMAKE_FIND_ROOT_PATH /usr/x86_64-w64-mingw32)
 
 # Search for programs in the build host directories
@@ -38,13 +44,6 @@ set(CMAKE_FIND_ROOT_PATH_MODE_PROGRAM NEVER)
 set(CMAKE_FIND_ROOT_PATH_MODE_LIBRARY ONLY)
 set(CMAKE_FIND_ROOT_PATH_MODE_INCLUDE ONLY)
 set(CMAKE_FIND_ROOT_PATH_MODE_PACKAGE ONLY)
-
-# Make sure Qt can be detected by CMake
-set(QT_BINARY_DIR /usr/x86_64-w64-mingw32/bin /usr/bin)
-set(QT_INCLUDE_DIRS_NO_SYSTEM ON)
-set(QT_HOST_PATH
-    "/usr"
-    CACHE PATH "host path for Qt")
 
 # Set the resource compiler (RHBZ #652435)
 set(CMAKE_RC_COMPILER x86_64-w64-mingw32-windres)

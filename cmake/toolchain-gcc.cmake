@@ -1,7 +1,7 @@
 #[[
 MIT License
 
-Copyright (c) 2023 ZIMO Elektronik
+Copyright (c) 2024 ZIMO Elektronik
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -23,9 +23,9 @@ SOFTWARE.
 ]]
 
 # Find gcc
-find_program(C_COMPILER gcc)
-find_program(CXX_COMPILER c++)
-find_program(AR ar)
+find_program(C_COMPILER gcc REQUIRED)
+find_program(CXX_COMPILER c++ REQUIRED)
+find_program(AR ar REQUIRED)
 
 set(CMAKE_ASM_COMPILER ${C_COMPILER})
 set(CMAKE_C_COMPILER ${C_COMPILER})

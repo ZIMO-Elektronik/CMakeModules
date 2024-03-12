@@ -1,7 +1,7 @@
 #[[
 MIT License
 
-Copyright (c) 2023 ZIMO Elektronik
+Copyright (c) 2024 ZIMO Elektronik
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -27,13 +27,13 @@ SOFTWARE.
 set(CMAKE_TRY_COMPILE_TARGET_TYPE STATIC_LIBRARY)
 set(CMAKE_SYSTEM_NAME Target)
 
-# Find arm-none-eabi
-find_program(C_COMPILER arm-none-eabi-gcc)
-find_program(CXX_COMPILER arm-none-eabi-g++)
-find_program(AR arm-none-eabi-ar)
-find_program(OBJCOPY arm-none-eabi-objcopy)
-find_program(OBJDUMP arm-none-eabi-objdump)
-find_program(SIZE arm-none-eabi-size)
+# Find arm-none-eabi-gcc
+find_program(C_COMPILER arm-none-eabi-gcc REQUIRED)
+find_program(CXX_COMPILER arm-none-eabi-g++ REQUIRED)
+find_program(AR arm-none-eabi-ar REQUIRED)
+find_program(OBJCOPY arm-none-eabi-objcopy REQUIRED)
+find_program(OBJDUMP arm-none-eabi-objdump REQUIRED)
+find_program(SIZE arm-none-eabi-size REQUIRED)
 
 set(CMAKE_ASM_COMPILER ${C_COMPILER})
 set(CMAKE_C_COMPILER ${C_COMPILER})

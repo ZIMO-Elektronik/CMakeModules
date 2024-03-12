@@ -1,7 +1,7 @@
 #[[
 MIT License
 
-Copyright (c) 2023 ZIMO Elektronik
+Copyright (c) 2024 ZIMO Elektronik
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -23,9 +23,9 @@ SOFTWARE.
 ]]
 
 # Find clang
-find_program(C_COMPILER clang)
-find_program(CXX_COMPILER clang++)
-find_program(AR llvm-ar)
+find_program(C_COMPILER clang REQUIRED)
+find_program(CXX_COMPILER clang++ REQUIRED)
+find_program(AR llvm-ar REQUIRED)
 
 set(CMAKE_ASM_COMPILER ${C_COMPILER})
 set(CMAKE_C_COMPILER ${C_COMPILER})

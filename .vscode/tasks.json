@@ -2,10 +2,10 @@
   "version": "2.0.0",
   "tasks": [
     {
-      "label": "CMake CMakeModules",
+      "label": "CMake CMakeModules CMAKEMODULES_BUILD_TESTING",
       "type": "shell",
       "isBackground": true,
-      "command": "cmake -Bbuild -GNinja"
+      "command": "cmake -Bbuild -GNinja -DCMAKEMODULES_BUILD_TESTING=ON"
     }
   ]
 }

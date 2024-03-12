@@ -1,4 +1,5 @@
+include(build_qt.cmake)
 include(cpm.cmake)
-include(get_cqtdeployer.cmake)
+include(CQtDeployer.cmake)
 include(minify_html.cmake)
 include(sanitize.cmake)

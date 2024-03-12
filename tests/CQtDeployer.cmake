@@ -1,5 +1,5 @@
 # Get CQtDeployer for Linux and Windows
-get_cqtdeployer(SYSTEMS Linux Windows)
+find_package(CQtDeployer 1.6.2337 REQUIRED COMPONENTS Linux Windows)
 
 if(NOT CQTDEPLOYER_EXECUTABLE)
   message(FATAL_ERROR "CQtDeployer for ${CMAKE_HOST_SYSTEM_NAME} not found")

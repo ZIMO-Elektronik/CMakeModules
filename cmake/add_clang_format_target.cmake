@@ -1,7 +1,7 @@
 #[[
 MIT License
 
-Copyright (c) 2023 ZIMO Elektronik
+Copyright (c) 2024 ZIMO Elektronik
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -26,7 +26,7 @@ function(add_clang_format_target TARGET)
   set(multi OPTIONS FILES)
   cmake_parse_arguments(arg "" "" "${multi}" "${ARGN}")
 
-  find_program(CLANG_FORMAT_EXECUTABLE clang-format)
+  find_program(CLANG_FORMAT_EXECUTABLE clang-format REQUIRED)
   if(NOT CLANG_FORMAT_EXECUTABLE)
     return()
   endif()
