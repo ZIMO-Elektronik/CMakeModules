@@ -22,12 +22,38 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 ]]
 
-# Find gcc-12
-find_program(C_COMPILER gcc-12 REQUIRED)
-find_program(CXX_COMPILER c++-12 REQUIRED)
-find_program(AR ar REQUIRED)
+set(CMAKE_SYSTEM_NAME Windows)
+set(CMAKE_SYSTEM_PROCESSOR x86_64)
+
+# Find x86_64-w64-mingw32-gcc
+find_program(C_COMPILER x86_64-w64-mingw32-gcc-posix REQUIRED)
+find_program(CXX_COMPILER x86_64-w64-mingw32-g++-posix REQUIRED)
+find_program(AR x86_64-w64-mingw32-gcc-ar-posix REQUIRED)
 
 set(CMAKE_ASM_COMPILER ${C_COMPILER})
 set(CMAKE_C_COMPILER ${C_COMPILER})
 set(CMAKE_CXX_COMPILER ${CXX_COMPILER})
 set(CMAKE_AR ${AR})
+
+set(CMAKE_SYSROOT /usr/x86_64-w64-mingw32)
+set(CMAKE_FIND_ROOT_PATH /usr/x86_64-w64-mingw32)
+
+# Search for programs in the build host directories
+set(CMAKE_FIND_ROOT_PATH_MODE_PROGRAM NEVER)
+# For libraries and headers in the target directories
+set(CMAKE_FIND_ROOT_PATH_MODE_LIBRARY ONLY)
+set(CMAKE_FIND_ROOT_PATH_MODE_INCLUDE ONLY)
+set(CMAKE_FIND_ROOT_PATH_MODE_PACKAGE ONLY)
+
+# Set the resource compiler (RHBZ #652435)
+set(CMAKE_RC_COMPILER x86_64-w64-mingw32-windres)
+set(CMAKE_MC_COMPILER x86_64-w64-mingw32-windmc)
+
+# Override boost thread component suffix as mingw-w64-boost is compiled with
+# threadapi=win32
+set(Boost_THREADAPI win32)
+
+# These are needed for compiling lapack (RHBZ #753906)
+set(CMAKE_Fortran_COMPILER x86_64-w64-mingw32-gfortran)
+set(CMAKE_AR:FILEPATH x86_64-w64-mingw32-ar)
+set(CMAKE_RANLIB:FILEPATH x86_64-w64-mingw32-ranlib)

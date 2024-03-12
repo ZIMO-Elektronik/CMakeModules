@@ -26,7 +26,7 @@ function(add_clang_format_target TARGET)
   set(multi OPTIONS FILES)
   cmake_parse_arguments(arg "" "" "${multi}" "${ARGN}")
 
-  find_program(CLANG_FORMAT_EXECUTABLE clang-format)
+  find_program(CLANG_FORMAT_EXECUTABLE clang-format REQUIRED)
   if(NOT CLANG_FORMAT_EXECUTABLE)
     return()
   endif()

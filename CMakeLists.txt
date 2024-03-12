@@ -7,7 +7,7 @@ set(CMAKE_MODULE_PATH
     ${CMAKE_MODULE_PATH}
     PARENT_SCOPE)
 
-#
+# Implicitly include CPM
 if(NOT cpm.cmake_SOURCE_DIR)
   FetchContent_Declare(
     CPM.cmake

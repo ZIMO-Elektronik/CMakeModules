@@ -23,9 +23,9 @@ SOFTWARE.
 ]]
 
 # Find gcc
-find_program(C_COMPILER gcc)
-find_program(CXX_COMPILER c++)
-find_program(AR ar)
+find_program(C_COMPILER gcc REQUIRED)
+find_program(CXX_COMPILER c++ REQUIRED)
+find_program(AR ar REQUIRED)
 
 set(CMAKE_ASM_COMPILER ${C_COMPILER})
 set(CMAKE_C_COMPILER ${C_COMPILER})

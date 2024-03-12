@@ -22,16 +22,11 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 ]]
 
-function(build_qt)
-  set(oneValueArgs VERSION)
+function(build_qt VERSION)
   set(multiValueArgs MODULES CMAKE_OPTIONS)
-  cmake_parse_arguments(ARG "" "${oneValueArgs}" "${multiValueArgs}" "${ARGN}")
+  cmake_parse_arguments(ARG "" "" "${multiValueArgs}" "${ARGN}")
 
-  # Default to version 6.6.1
-  if(NOT DEFINED ARG_VERSION)
-    set(ARG_VERSION 6.6.1)
-  endif()
-  if(ARG_VERSION MATCHES "^(0|[1-9][0-9]*)[.](0|[1-9][0-9]*)[.](0|[1-9][0-9]*)")
+  if(VERSION MATCHES "^(0|[1-9][0-9]*)[.](0|[1-9][0-9]*)[.](0|[1-9][0-9]*)")
     if(${CMAKE_MATCH_1}.${CMAKE_MATCH_2}.${CMAKE_MATCH_3} VERSION_LESS 6.0.0)
       message(FATAL_ERROR "Qt versions below 6.0.0 not supported")
     endif()
@@ -48,7 +43,7 @@ function(build_qt)
     GIT_REPOSITORY
     https://code.qt.io/qt/qt5.git
     VERSION
-    ${ARG_VERSION}
+    ${VERSION}
     DOWNLOAD_ONLY
     ON
     GIT_SUBMODULES
@@ -56,26 +51,17 @@ function(build_qt)
 
   execute_process(
     COMMAND
-      ${CMAKE_COMMAND} -Bbuild -GNinja
-      -DCMAKE_INSTALL_PREFIX=${qt6_BINARY_DIR} #
-      -DQT_DEBUG_FIND_PACKAGE=ON #
-      ${ARG_CMAKE_OPTIONS}
-    WORKING_DIRECTORY
-      ${qt6_SOURCE_DIR} #
-      COMMAND_ECHO STDOUT #
-      COMMAND_ERROR_IS_FATAL ANY)
+      ${CMAKE_COMMAND} -Bbuild -GNinja -DCMAKE_INSTALL_PREFIX=${qt6_BINARY_DIR}
+      -DQT_DEBUG_FIND_PACKAGE=ON ${ARG_CMAKE_OPTIONS}
+    WORKING_DIRECTORY ${qt6_SOURCE_DIR} COMMAND_ECHO STDOUT
+                      COMMAND_ERROR_IS_FATAL ANY)
 
   execute_process(
-    COMMAND
-      ${CMAKE_COMMAND} --build ${qt6_SOURCE_DIR}/build --parallel #
-      COMMAND_ECHO STDOUT #
-      COMMAND_ERROR_IS_FATAL ANY)
+    COMMAND ${CMAKE_COMMAND} --build ${qt6_SOURCE_DIR}/build --parallel
+            COMMAND_ECHO STDOUT COMMAND_ERROR_IS_FATAL ANY)
 
-  execute_process(
-    COMMAND
-      ${CMAKE_COMMAND} --install ${qt6_SOURCE_DIR}/build #
-      COMMAND_ECHO STDOUT #
-      COMMAND_ERROR_IS_FATAL ANY)
+  execute_process(COMMAND ${CMAKE_COMMAND} --install ${qt6_SOURCE_DIR}/build
+                          COMMAND_ECHO STDOUT COMMAND_ERROR_IS_FATAL ANY)
 
   # Set QT_BINARY_DIR
   set(QT_BINARY_DIR

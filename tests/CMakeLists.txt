@@ -1,3 +1,4 @@
+include(build_qt.cmake)
 include(cpm.cmake)
 include(CQtDeployer.cmake)
 include(minify_html.cmake)

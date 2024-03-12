@@ -23,9 +23,9 @@ SOFTWARE.
 ]]
 
 # Find clang
-find_program(C_COMPILER clang)
-find_program(CXX_COMPILER clang++)
-find_program(AR llvm-ar)
+find_program(C_COMPILER clang REQUIRED)
+find_program(CXX_COMPILER clang++ REQUIRED)
+find_program(AR llvm-ar REQUIRED)
 
 set(CMAKE_ASM_COMPILER ${C_COMPILER})
 set(CMAKE_C_COMPILER ${C_COMPILER})
