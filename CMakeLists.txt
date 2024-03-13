@@ -1,11 +1,14 @@
 cmake_minimum_required(VERSION 3.25 FATAL_ERROR)
 include(FetchContent)
 
-# Append CMakeModules path to CMAKE_MODULE_PATH
-set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} ${CMAKE_CURRENT_LIST_DIR}/cmake)
-set(CMAKE_MODULE_PATH
-    ${CMAKE_MODULE_PATH}
-    PARENT_SCOPE)
+# Prepend CMakeModules path to CMAKE_MODULE_PATH
+set(CMAKE_MODULE_PATH ${CMAKE_CURRENT_LIST_DIR}/cmake ${CMAKE_MODULE_PATH})
+get_directory_property(HAS_PARENT_DIRECTORY PARENT_DIRECTORY)
+if(HAS_PARENT_DIRECTORY)
+  set(CMAKE_MODULE_PATH
+      ${CMAKE_MODULE_PATH}
+      PARENT_SCOPE)
+endif()
 
 # Implicitly include CPM
 if(NOT cpm.cmake_SOURCE_DIR)
@@ -31,9 +34,11 @@ include(cmake/version_from_git.cmake)
 version_from_git()
 project(CMakeModules VERSION ${VERSION_FROM_GIT})
 
-option(CMAKEMODULES_BUILD_TESTING "" OFF)
-
-if(CMAKEMODULES_BUILD_TESTING)
+# Might get included before a top level project call, check directory as well
+if(PROJECT_IS_TOP_LEVEL AND CMAKE_CURRENT_SOURCE_DIR STREQUAL CMAKE_SOURCE_DIR)
   include(CTest)
+endif()
+
+if(BUILD_TESTING)
   add_subdirectory(tests)
 endif()

@@ -29,8 +29,8 @@ macro(sanitize SANITIZERS)
   set(LDFLAGS "${LDFLAGS} -fsanitize=${SANITIZERS}")
 
   # Set in PARENT_SCOPE
-  get_directory_property(HAS_PARENT_SCOPE PARENT_DIRECTORY)
-  if(HAS_PARENT_SCOPE)
+  get_directory_property(HAS_PARENT_DIRECTORY PARENT_DIRECTORY)
+  if(HAS_PARENT_DIRECTORY)
     set(CMAKE_C_FLAGS
         ${CMAKE_C_FLAGS}
         PARENT_SCOPE)
