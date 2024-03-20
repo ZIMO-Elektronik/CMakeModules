@@ -23,14 +23,14 @@ SOFTWARE.
 ]]
 
 function(add_clang_format_target TARGET)
-  set(multi OPTIONS FILES)
-  cmake_parse_arguments(arg "" "" "${multi}" "${ARGN}")
+  set(MULTI_VALUE_KEYWORDS OPTIONS FILES)
+  cmake_parse_arguments(ARG "" "" "${MULTI_VALUE_KEYWORDS}" "${ARGN}")
 
   find_program(CLANG_FORMAT_EXECUTABLE clang-format REQUIRED)
 
   add_custom_target(
     ${TARGET}
-    COMMAND ${CLANG_FORMAT_EXECUTABLE} ${arg_OPTIONS} ${arg_FILES}
+    COMMAND ${CLANG_FORMAT_EXECUTABLE} ${ARG_OPTIONS} ${ARG_FILES}
     WORKING_DIRECTORY ${CMAKE_SOURCE_DIR}
-    COMMENT "${CLANG_FORMAT_EXECUTABLE} ${arg_OPTIONS} ${arg_FILES}")
+    COMMENT "${CLANG_FORMAT_EXECUTABLE} ${ARG_OPTIONS} ${ARG_FILES}")
 endfunction()

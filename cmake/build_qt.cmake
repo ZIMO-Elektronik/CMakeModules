@@ -23,8 +23,8 @@ SOFTWARE.
 ]]
 
 function(build_qt VERSION)
-  set(multiValueArgs MODULES CMAKE_OPTIONS)
-  cmake_parse_arguments(ARG "" "" "${multiValueArgs}" "${ARGN}")
+  set(MULTI_VALUE_KEYWORDS MODULES CMAKE_OPTIONS)
+  cmake_parse_arguments(ARG "" "" "${MULTI_VALUE_KEYWORDS}" "${ARGN}")
 
   if(VERSION MATCHES "^(0|[1-9][0-9]*)[.](0|[1-9][0-9]*)[.](0|[1-9][0-9]*)")
     if(${CMAKE_MATCH_1}.${CMAKE_MATCH_2}.${CMAKE_MATCH_3} VERSION_LESS 6.0.0)
