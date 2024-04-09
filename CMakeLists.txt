@@ -15,7 +15,7 @@ if(NOT cpm.cmake_SOURCE_DIR)
   FetchContent_Declare(
     CPM.cmake
     GIT_REPOSITORY https://github.com/cpm-cmake/CPM.cmake.git
-    GIT_TAG v0.38.7)
+    GIT_TAG v0.39.0)
   FetchContent_MakeAvailable(CPM.cmake)
   include(${cpm.cmake_SOURCE_DIR}/cmake/CPM.cmake)
 endif()
