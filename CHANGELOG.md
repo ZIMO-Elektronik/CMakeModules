@@ -1,5 +1,8 @@
 # Changelog
 
+## 0.9.1
+- Bugfix don't build tests if [`CMAKE_CURRENT_SOURCE_DIR`](https://cmake.org/cmake/help/latest/variable/CMAKE_CURRENT_SOURCE_DIR.html) != [`CMAKE_SOURCE_DIR`](https://cmake.org/cmake/help/latest/variable/CMAKE_SOURCE_DIR.html)
+
 ## 0.9.0
 - Update to CPM 0.39.0
 - arm-clang and arm-none-eabi-gcc toolchain files set [`CMAKE_SYSTEM_NAME`](https://cmake.org/cmake/help/latest/variable/CMAKE_SYSTEM_NAME.html) to `Generic`
