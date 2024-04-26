@@ -115,12 +115,13 @@ It sets the following variables:
 - IDENTIFIERS_FROM_GIT
 - METADATA_FROM_GIT
 
-:warning: GitHub [actions/checkout@v4](https://github.com/actions/checkout) does not automatically checkout tags. You'll need to manually specify that, e.g.
-```yml
-- uses: actions/checkout@v4
-  with:
-    fetch-depth: 0
-```
+> [!IMPORTANT]
+> GitHub [actions/checkout@v4](https://github.com/actions/checkout) does not automatically checkout tags. You'll need to manually specify that, e.g.
+> ```yml
+> - uses: actions/checkout@v4
+>   with:
+>     fetch-depth: 0
+> ```
 
 ## Find&lt;PackageName&gt; files
 ### FindCQtDeployer
@@ -138,7 +139,7 @@ add_custom_command(
 
 ## Toolchain files
 ### toolchain-arm-clang
-Toolchain file to build ARM target with Clang. Build types are defined as follows
+Toolchain file to build ARM target with Clang. [`CMAKE_SYSTEM_NAME`](https://cmake.org/cmake/help/latest/variable/CMAKE_SYSTEM_NAME.html) gets set to `Generic`. Build types are defined as follows
 | Build type   | Flags           |
 | ------------ | --------------- |
 | Debug        | -Og -g          |
@@ -147,7 +148,7 @@ Toolchain file to build ARM target with Clang. Build types are defined as follow
 | MinSizeRel   | -DNDEBUG -Os -g |
 
 ### toolchain-arm-none-eabi-gcc
-Toolchain file to build ARM target with arm-none-eabi-gcc. Build types are defined as follows
+Toolchain file to build ARM target with arm-none-eabi-gcc. [`CMAKE_SYSTEM_NAME`](https://cmake.org/cmake/help/latest/variable/CMAKE_SYSTEM_NAME.html) gets set to `Generic`. Build types are defined as follows
 | Build type   | Flags           |
 | ------------ | --------------- |
 | Debug        | -Og -g          |

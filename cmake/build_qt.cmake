@@ -41,7 +41,7 @@ function(build_qt VERSION)
     NAME
     qt6
     GIT_REPOSITORY
-    https://code.qt.io/qt/qt5.git
+    "https://code.qt.io/qt/qt5.git"
     VERSION
     ${VERSION}
     DOWNLOAD_ONLY

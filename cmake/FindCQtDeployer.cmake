@@ -41,7 +41,7 @@ find_package(Git REQUIRED)
 # Get SHA1 for downloading releases
 execute_process(
   COMMAND ${GIT_EXECUTABLE} ls-remote
-          https://github.com/QuasarApp/CQtDeployer.git -b v${VERSION}
+          "https://github.com/QuasarApp/CQtDeployer.git" -b v${VERSION}
   OUTPUT_VARIABLE GIT_OUTPUT
   ERROR_VARIABLE GIT_ERROR
   OUTPUT_STRIP_TRAILING_WHITESPACE ERROR_STRIP_TRAILING_WHITESPACE)
@@ -60,7 +60,7 @@ if(Linux IN_LIST COMPONENTS)
       NAME
       cqtdeployer_linux
       URL
-      https://github.com/QuasarApp/CQtDeployer/releases/download/v${VERSION}/CQtDeployer_${VERSION}_Linux_x86_64.zip
+      "https://github.com/QuasarApp/CQtDeployer/releases/download/v${VERSION}/CQtDeployer_${VERSION}_Linux_x86_64.zip"
       VERSION
       ${VERSION}
       DOWNLOAD_ONLY
@@ -79,7 +79,7 @@ if(Linux IN_LIST COMPONENTS)
       NAME
       cqtdeployer_linux
       URL
-      https://github.com/QuasarApp/CQtDeployer/releases/download/v${VERSION}/CQtDeployer_${VERSION}.${SHA1}_Linux_x86_64.zip
+      "https://github.com/QuasarApp/CQtDeployer/releases/download/v${VERSION}/CQtDeployer_${VERSION}.${SHA1}_Linux_x86_64.zip"
       VERSION
       ${VERSION}
       DOWNLOAD_ONLY
@@ -121,7 +121,7 @@ if(Windows IN_LIST COMPONENTS)
     NAME
     cqtdeployer_windows
     URL
-    https://github.com/QuasarApp/CQtDeployer/releases/download/v${VERSION}/CQtDeployer_${VERSION}.${SHA1}_Windows_AMD64.zip
+    "https://github.com/QuasarApp/CQtDeployer/releases/download/v${VERSION}/CQtDeployer_${VERSION}.${SHA1}_Windows_AMD64.zip"
     VERSION
     ${VERSION}
     DOWNLOAD_ONLY
