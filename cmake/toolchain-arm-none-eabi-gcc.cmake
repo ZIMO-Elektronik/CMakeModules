@@ -25,7 +25,7 @@ SOFTWARE.
 # Do not try to compile a full blown executable as this would depend on standard
 # C and syscalls
 set(CMAKE_TRY_COMPILE_TARGET_TYPE STATIC_LIBRARY)
-set(CMAKE_SYSTEM_NAME Target)
+set(CMAKE_SYSTEM_NAME Generic)
 
 # Find arm-none-eabi-gcc
 find_program(C_COMPILER arm-none-eabi-gcc REQUIRED)

@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.9.0
+- Update to CPM 0.39.0
+- arm-clang and arm-none-eabi-gcc toolchain files set [`CMAKE_SYSTEM_NAME`](https://cmake.org/cmake/help/latest/variable/CMAKE_SYSTEM_NAME.html) to `Generic`
+
 ## 0.8.0
 - Add build_qt
 - Add FindCQtDeployer file
