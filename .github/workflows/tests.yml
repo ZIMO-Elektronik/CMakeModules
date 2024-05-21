@@ -8,14 +8,6 @@ on:
 
 jobs:
   tests:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4.1.1
-        with:
-          fetch-depth: 0
-      - name: Install prerequisites
-        run: |
-          sudo apt update -y
-          sudo apt install -y ninja-build
-          sudo apt install -y '^libxcb.*-dev' libx11-xcb-dev libglu1-mesa-dev libxrender-dev libxi-dev libxkbcommon-dev libxkbcommon-x11-dev
-      - run: cmake -Bbuild
+    uses: ZIMO-Elektronik/.github-workflows/.github/workflows/x86_64-linux-gnu-gcc.yml@v0.0.6
+    with:
+      pre-build: sudo apt install -y libgl1-mesa-dev libglx-dev ninja-build
