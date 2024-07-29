@@ -22,11 +22,11 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 ]]
 
-# Default to version 1.6.2345
+# Default to version 1.6.2365
 if(CQtDeployer_FIND_VERSION_COMPLETE)
   set(VERSION ${CQtDeployer_FIND_VERSION_COMPLETE})
 else()
-  set(VERSION 1.6.2345)
+  set(VERSION 1.6.2365)
 endif()
 
 # Default to HOST
