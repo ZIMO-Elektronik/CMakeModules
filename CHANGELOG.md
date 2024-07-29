@@ -1,5 +1,8 @@
 # Changelog
 
+## 0.9.2
+- Update to CPM 0.40.1
+
 ## 0.9.1
 - Bugfix don't build tests if [`CMAKE_CURRENT_SOURCE_DIR`](https://cmake.org/cmake/help/latest/variable/CMAKE_CURRENT_SOURCE_DIR.html) != [`CMAKE_SOURCE_DIR`](https://cmake.org/cmake/help/latest/variable/CMAKE_SOURCE_DIR.html)
 
