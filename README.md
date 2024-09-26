@@ -7,7 +7,7 @@
 CMakeModules bundles CMake modules and toolchain files.
 
 <details>
-  <summary>Table of contents</summary>
+  <summary>Table of Contents</summary>
   <ol>
     <li><a href="#modules">Modules</a></li>
       <ul>
@@ -23,11 +23,11 @@ CMakeModules bundles CMake modules and toolchain files.
         <li><a href="#target_unity_build">target_unity_build</a></li>
         <li><a href="#version_from_git">version_from_git</a></li>
       </ul>
-    <li><a href="#findpackagename-files">Find&lt;PackageName&gt; files</a></li>
+    <li><a href="#findpackagename-files">Find&lt;PackageName&gt; Files</a></li>
       <ul>
         <li><a href="#findcqtdeployer">FindCQtDeployer</a></li>
       </ul>
-    <li><a href="#toolchain-files">Toolchain files</a></li>
+    <li><a href="#toolchain-files">Toolchain Files</a></li>
       <ul>
         <li><a href="#toolchain-arm-clang">toolchain-arm-clang</a></li>
         <li><a href="#toolchain-arm-none-eabi-gcc">toolchain-arm-none-eabi-gcc</a></li>
@@ -123,7 +123,7 @@ It sets the following variables:
 >     fetch-depth: 0
 > ```
 
-## Find&lt;PackageName&gt; files
+## Find&lt;PackageName&gt; Files
 ### FindCQtDeployer
 [CQtDeployer](https://github.com/QuasarApp/CQtDeployer) is like a cross-platform version of [windeployqt](https://doc.qt.io/qt-6/windows-deployment.html). It helps you to extract all libraries your executable depends on and to create a launch script (or installer) for your application.
 ```cmake
@@ -137,7 +137,7 @@ add_custom_command(
   COMMAND ${CQTDEPLOYER_EXECUTABLE} -bin $<TARGET_FILE:YourTarget>)
 ```
 
-## Toolchain files
+## Toolchain Files
 ### toolchain-arm-clang
 Toolchain file to build ARM target with Clang. [`CMAKE_SYSTEM_NAME`](https://cmake.org/cmake/help/latest/variable/CMAKE_SYSTEM_NAME.html) gets set to `Generic`. Build types are defined as follows
 | Build type   | Flags           |
