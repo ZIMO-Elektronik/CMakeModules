@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.9.4
+- Update to CPM 0.40.5
+- Bugfix workaround ignore `-Werror=array-bounds` on MINGW
+
 ## 0.9.3
 - Update to CPM 0.40.2
 - Bugfix `add_clang_format_target` doesn't fail without `clang-format`
