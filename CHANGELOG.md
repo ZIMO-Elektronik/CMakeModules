@@ -1,5 +1,8 @@
 # Changelog
 
+## 0.9.4
+- Update to CPM 0.40.8 ([#23](https://github.com/ZIMO-Elektronik/CMakeModules/issues/23))
+
 ## 0.9.3
 - Update to CPM 0.40.2
 - Bugfix `add_clang_format_target` doesn't fail without `clang-format`
