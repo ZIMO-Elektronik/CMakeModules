@@ -1,5 +1,8 @@
 # Changelog
 
+## 0.9.5
+- Update to CPM 0.41.0
+
 ## 0.9.4
 - Update to CPM 0.40.8 ([#23](https://github.com/ZIMO-Elektronik/CMakeModules/issues/23))
 
