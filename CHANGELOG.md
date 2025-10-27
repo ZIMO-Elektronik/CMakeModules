@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.10.0
+- Update to CPM 0.42.0
+- Remove errors from `target_common_warnings` and introduces `target_common_errors` instead
+
 ## 0.9.5
 - Update to CPM 0.41.0
 
@@ -21,40 +25,40 @@
 - arm-clang and arm-none-eabi-gcc toolchain files set [`CMAKE_SYSTEM_NAME`](https://cmake.org/cmake/help/latest/variable/CMAKE_SYSTEM_NAME.html) to `Generic`
 
 ## 0.8.0
-- Add build_qt
-- Add FindCQtDeployer file
+- Add `build_qt`
+- Add `FindCQtDeployer` file
 
 ## 0.7.0
-- Add add_compile_link_options
+- Add `add_compile_link_options`
 - CPM gets added implicitly
-- Change sanitize to macro
+- Change `sanitize` to macro
 
 ## 0.6.1
-- Default BUILD_TESTING=OFF
+- Default `BUILD_TESTING=OFF`
 
 ## 0.6.0
-- Add get_cqtdeployer
+- Add `get_cqtdeployer`
 
 ## 0.5.0
-- Add find_qt
+- Add `find_qt`
 
 ## 0.4.1
-- version_from_git defaults to 0.0.0 if git describe --tags errors 
+- `version_from_git` defaults to 0.0.0 if `git describe --tags` errors 
 
 ## 0.4.0
-- Add x86_64-w64-mingw32 toolchain file
+- Add `x86_64-w64-mingw32` toolchain file
 
 ## 0.3.0
-- Add add_clang_format_target
+- Add `add_clang_format_target`
 
 ## 0.2.2
 - Update to CPM 0.38.6
 
 ## 0.2.1
-- Fix target_compile_link_options
+- Fix `target_compile_link_options`
 
 ## 0.2.0
-- Fix spelling of sanitize
+- Fix spelling of `sanitize`
 
 ## 0.1.2
 - `-Werror=` argument `-Werror=implicit-function-declaration` is not valid for C++
@@ -67,23 +71,23 @@
 - Remove target_suppress_warnings (superseded by [FetchContent_Declare](https://cmake.org/cmake/help/latest/module/FetchContent.html) SYSTEM option)
 
 ## 0.0.7
-- Add METADATA to version_from_git
+- Add METADATA to `version_from_git`
 
 ## 0.0.6
-- Add version_from_git
+- Add `version_from_git`
 
 ## 0.0.5
-- Remove fetchcontent_declare_unique
+- Remove `fetchcontent_declare_unique`
 
 ## 0.0.4
-- Add gcc-12 toolchain file
+- Add `gcc-12` toolchain file
 
 ## 0.0.3
 - Add CPM
-- Add minify_html
+- Add `minify_html`
 
 ## 0.0.2
-- Add target_unity_build
+- Add `target_unity_build`
 
 ## 0.0.1
 - Initial release

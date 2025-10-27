@@ -1,6 +1,6 @@
 # CMakeModules
 
-[![tests](https://github.com/ZIMO-Elektronik/CMakeModules/actions/workflows/tests.yml/badge.svg)](https://github.com/ZIMO-Elektronik/CMakeModules/actions/workflows/tests.yml)
+[![tests](https://github.com/ZIMO-Elektronik/CMakeModules/actions/workflows/tests.yml/badge.svg)](https://github.com/ZIMO-Elektronik/CMakeModules/actions/workflows/tests.yml) [![license](https://img.shields.io/github/license/ZIMO-Elektronik/CMakeModules)](https://github.com/ZIMO-Elektronik/CMakeModules/raw/master/LICENSE)
 
 <img src="data/images/logo.svg" width="15%" align="right"/>
 
@@ -91,6 +91,9 @@ Add [-fsanitize](https://gcc.gnu.org/onlinedocs/gcc/Instrumentation-Options.html
 sanitize(address,undefined)
 ```
 
+### target_common_errors
+Wrapper around [target_compile_options](https://cmake.org/cmake/help/latest/command/target_compile_options.html) which adds a bunch of useful compiler errors to a target. Can also be called without any further arguments.
+
 ### target_common_warnings
 Wrapper around [target_compile_options](https://cmake.org/cmake/help/latest/command/target_compile_options.html) which adds a bunch of useful compiler warnings to a target. Can also be called without any further arguments.
 
@@ -116,9 +119,9 @@ It sets the following variables:
 - METADATA_FROM_GIT
 
 > [!IMPORTANT]
-> GitHub [actions/checkout@v4](https://github.com/actions/checkout) does not automatically checkout tags. You'll need to manually specify that, e.g.
+> GitHub [actions/checkout@v5](https://github.com/actions/checkout) does not automatically checkout tags. You'll need to manually specify that, e.g.
 > ```yml
-> - uses: actions/checkout@v4
+> - uses: actions/checkout@v5
 >   with:
 >     fetch-depth: 0
 > ```

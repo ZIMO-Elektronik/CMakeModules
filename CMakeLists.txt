@@ -15,7 +15,7 @@ if(NOT cpm.cmake_SOURCE_DIR)
   FetchContent_Declare(
     CPM.cmake
     GIT_REPOSITORY "https://github.com/cpm-cmake/CPM.cmake.git"
-    GIT_TAG v0.41.0)
+    GIT_TAG v0.42.0)
   FetchContent_MakeAvailable(CPM.cmake)
   include(${cpm.cmake_SOURCE_DIR}/cmake/CPM.cmake)
 endif()
@@ -26,6 +26,7 @@ include(cmake/build_qt.cmake)
 include(cmake/find_qt.cmake)
 include(cmake/minify_html.cmake)
 include(cmake/sanitize.cmake)
+include(cmake/target_common_errors.cmake)
 include(cmake/target_common_warnings.cmake)
 include(cmake/target_compile_link_options.cmake)
 include(cmake/target_unity_build.cmake)
