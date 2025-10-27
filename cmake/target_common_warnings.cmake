@@ -23,37 +23,63 @@ SOFTWARE.
 ]]
 
 function(target_common_warnings TARGET SCOPE)
-  # Set common warnings
-  set(C_CXX_WARNINGS
-      -Wall;-Wextra;-Wshadow;-Wunused;-Wcast-align;-Wpedantic;-Wconversion;-Wsign-conversion;-Wmisleading-indentation;-Wnull-dereference;-Wdouble-promotion;-Wfatal-errors;
-  )
+  # Common warnings for both C and C++
+  set(COMMON_WARNINGS
+      -Wall
+      -Wcast-align
+      -Wcast-qual
+      -Wconversion
+      -Wdouble-promotion
+      -Wextra
+      -Wfloat-equal
+      -Wformat=2
+      -Wmisleading-indentation
+      -Wnull-dereference
+      -Wpedantic
+      -Wshadow
+      -Wsign-conversion
+      -Wundef
+      -Wunused)
+
+  # C-only warnings
+  set(C_WARNINGS -Wmissing-declarations -Wstrict-prototypes -Wvla)
+
+  # C++-only warnings
   set(CXX_WARNINGS
-      "$<$<COMPILE_LANGUAGE:CXX>:-Wnon-virtual-dtor;-Wold-style-cast;-Wsuggest-override;-Woverloaded-virtual>"
-  )
-  set(GNU_WARNINGS
-      "$<$<CXX_COMPILER_ID:GNU>:-Wduplicated-cond;-Wduplicated-branches;-Wlogical-op>"
-  )
-  set(GNU_CXX_WARNINGS "$<$<COMPILE_LANG_AND_ID:CXX,GNU>:-Wuseless-cast>")
+      -Wdelete-non-virtual-dtor
+      -Wextra-semi
+      -Wnon-virtual-dtor
+      -Wold-style-cast
+      -Woverloaded-virtual
+      -Wself-move
+      -Wsuggest-override
+      -Wzero-as-null-pointer-constant)
 
-  # Make some errors
-  set(C_ERRORS "$<$<COMPILE_LANGUAGE:C>:-Werror-implicit-function-declaration>")
-  set(C_CXX_ERRORS
-      -Werror=array-bounds;-Werror=dangling-else;-Werror=implicit-fallthrough;-Werror=parentheses;-Werror=logical-not-parentheses;-Werror=misleading-indentation;-Werror=return-type;-Werror=sequence-point;-Werror=shift-negative-value;-Werror=shift-overflow;-Werror=sizeof-array-div;-Werror=strict-aliasing;-Werror=tautological-compare;-Werror=type-limits
-  )
+  # GCC-specific warnings
+  if(CMAKE_C_COMPILER_ID MATCHES GNU)
+    list(APPEND COMMON_WARNINGS -Wduplicated-branches -Wduplicated-cond
+         -Wlogical-op)
+  endif()
+  if(CMAKE_CXX_COMPILER_ID MATCHES GNU)
+    list(APPEND CXX_WARNINGS -Wclass-memaccess -Wuseless-cast)
+  endif()
 
-  if(NOT MINGW)
-    list(APPEND C_CXX_ERRORS -Werror=array-compare;-Werror=infinite-recursion)
+  # Clang-specific warnings
+  if(CMAKE_CXX_COMPILER_ID MATCHES Clang)
+    list(
+      APPEND
+      CXX_WARNINGS
+      -Wcovered-switch-default
+      -Wextra-semi-stmt
+      -Wnewline-eof
+      -Wself-assign
+      -Wundefined-func-template)
   endif()
 
   target_compile_options(
-    ${TARGET}
-    ${SCOPE}
-    ${C_CXX_WARNINGS}
-    ${CXX_WARNINGS}
-    ${GNU_WARNINGS}
-    ${GNU_CXX_WARNINGS}
-    ${C_ERRORS}
-    ${C_CXX_ERRORS})
+    ${TARGET} ${SCOPE} ${COMMON_WARNINGS}
+    "$<$<COMPILE_LANGUAGE:C>:${C_WARNINGS}>"
+    "$<$<COMPILE_LANGUAGE:CXX>:${CXX_WARNINGS}>")
 
   # If further arguments passed, forward
   target_compile_options(${TARGET} ${SCOPE} ${ARGN})
