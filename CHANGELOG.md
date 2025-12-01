@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.11.0
+- Add `include_what_you_must`
+- Implicitly include [CMakePrintHelpers](https://cmake.org/cmake/help/latest/module/CMakePrintHelpers.html)
+
 ## 0.10.0
 - Update to CPM 0.42.0
 - Remove errors from `target_common_warnings` and introduces `target_common_errors` instead

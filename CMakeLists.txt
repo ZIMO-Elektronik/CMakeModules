@@ -1,4 +1,5 @@
 cmake_minimum_required(VERSION 3.25 FATAL_ERROR)
+include(CMakePrintHelpers)
 include(FetchContent)
 
 # Prepend CMakeModules path to CMAKE_MODULE_PATH
@@ -24,6 +25,7 @@ include(cmake/add_clang_format_target.cmake)
 include(cmake/add_compile_link_options.cmake)
 include(cmake/build_qt.cmake)
 include(cmake/find_qt.cmake)
+include(cmake/include_what_you_must.cmake)
 include(cmake/minify_html.cmake)
 include(cmake/sanitize.cmake)
 include(cmake/target_common_errors.cmake)

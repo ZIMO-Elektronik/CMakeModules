@@ -8,6 +8,8 @@ on:
 
 jobs:
   tests:
-    uses: ZIMO-Elektronik/.github-workflows/.github/workflows/x86_64-linux-gnu-gcc.yml@v0.2.0
+    uses: ZIMO-Elektronik/.github-workflows/.github/workflows/x86_64-linux-gnu-gcc.yml@v0.2.1
     with:
-      pre-build: sudo apt install -y libgl1-mesa-dev libglx-dev ninja-build
+      pre-build: |
+        sudo apt update -y
+        sudo apt install -y libgl1-mesa-dev libglx-dev ninja-build
