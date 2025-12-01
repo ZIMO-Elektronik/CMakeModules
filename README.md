@@ -15,6 +15,7 @@ CMakeModules bundles CMake modules and toolchain files.
         <li><a href="#add_clang_format_target">add_clang_format_target</a></li>
         <li><a href="#add_compile_link_options">add_compile_link_options</a></li>
         <li><a href="#build_qt">build_qt</a></li>
+        <li><a href="#include_what_you_must">include_what_you_must</a></li>
         <li><a href="#find_qt">find_qt</a></li>
         <li><a href="#minify_html">minify_html</a></li>
         <li><a href="#sanitize">sanitize</a></li>
@@ -77,6 +78,12 @@ build_qt(
 Macro which conditionally adds Qt6 or Qt5 components depending on which version is already present in the configuration. If neither Qt6 nor Qt5 is found, the macro tries to add Qt6 first and if this fails, Qt5. This allows libraries to integrate Qt components without having to know the version.
 ```cmake
 find_qt(REQUIRED COMPONENTS Charts Core DataVisualization Widgets)
+```
+
+### include_what_you_must
+Adds a target which checks that the `.h`, `.hpp`, `.hh` and `.hxx` files of a target include all required headers.
+```cmake
+include_what_you_must(MDUIncludeWhatYouMust MDU::MDU)
 ```
 
 ### minify_html
