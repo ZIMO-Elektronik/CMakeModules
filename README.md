@@ -14,8 +14,8 @@ CMakeModules bundles CMake modules and toolchain files.
         <li><a href="#cpmcmake">CPM.cmake</a></li>
         <li><a href="#add_clang_format_target">add_clang_format_target</a></li>
         <li><a href="#add_compile_link_options">add_compile_link_options</a></li>
+        <li><a href="#add_include_what_you_must_target">add_include_what_you_must_target</a></li>
         <li><a href="#build_qt">build_qt</a></li>
-        <li><a href="#include_what_you_must">include_what_you_must</a></li>
         <li><a href="#find_qt">find_qt</a></li>
         <li><a href="#minify_html">minify_html</a></li>
         <li><a href="#sanitize">sanitize</a></li>
@@ -59,6 +59,12 @@ add_clang_format_target(FormatTarget OPTIONS -i --style=llvm FILES main.cpp func
 ### add_compile_link_options
 Wrapper around [add_compile_options](https://cmake.org/cmake/help/latest/command/add_compile_options.html) and [add_link_options](https://cmake.org/cmake/help/latest/command/add_link_options.html). Simply invokes both commands with all arguments.
 
+### add_include_what_you_must_target
+Adds a target which checks that the `.h`, `.hpp`, `.hh` and `.hxx` files of a target include all required headers. This is similar to [include-what-you-use](https://github.com/include-what-you-use/include-what-you-use), but it works based on headers and only shows you missing headers, not what has been included in excess.
+```cmake
+add_include_what_you_must_target(MDUIncludeWhatYouMust TARGET MDU::MDU EXCLUDE_HEADERS "rmt_mdu_encoder.h")
+```
+
 ### build_qt
 Build [Qt6](https://www.qt.io/) from source. For more information, please read the article [Building Qt 6 from Git](https://wiki.qt.io/Building_Qt_6_from_Git) on the official wiki.
 ```cmake
@@ -78,12 +84,6 @@ build_qt(
 Macro which conditionally adds Qt6 or Qt5 components depending on which version is already present in the configuration. If neither Qt6 nor Qt5 is found, the macro tries to add Qt6 first and if this fails, Qt5. This allows libraries to integrate Qt components without having to know the version.
 ```cmake
 find_qt(REQUIRED COMPONENTS Charts Core DataVisualization Widgets)
-```
-
-### include_what_you_must
-Adds a target which checks that the `.h`, `.hpp`, `.hh` and `.hxx` files of a target include all required headers.
-```cmake
-include_what_you_must(MDUIncludeWhatYouMust MDU::MDU)
 ```
 
 ### minify_html

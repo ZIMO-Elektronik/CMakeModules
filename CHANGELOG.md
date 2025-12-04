@@ -1,5 +1,8 @@
 # Changelog
 
+## 0.12.0
+- Rename `include_what_you_must` to `add_include_what_you_must_target`
+
 ## 0.11.0
 - Add `include_what_you_must`
 - Implicitly include [CMakePrintHelpers](https://cmake.org/cmake/help/latest/module/CMakePrintHelpers.html)
