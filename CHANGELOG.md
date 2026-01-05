@@ -1,5 +1,8 @@
 # Changelog
 
+## 0.12.1
+- Bugfix `include_what_you_must` produces `-Wnewline-eof` warnings
+
 ## 0.12.0
 - Rename `include_what_you_must` to `add_include_what_you_must_target`
 
