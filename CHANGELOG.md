@@ -1,5 +1,8 @@
 # Changelog
 
+##
+- Update to CPM 0.42.1
+
 ## 0.12.1
 - Bugfix `include_what_you_must` produces `-Wnewline-eof` warnings
 
