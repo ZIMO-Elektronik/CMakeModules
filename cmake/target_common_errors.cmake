@@ -25,8 +25,6 @@ SOFTWARE.
 function(target_common_errors TARGET SCOPE)
   # Common errors
   set(COMMON_ERRORS
-      -Werror=array-bounds
-      -Werror=array-compare
       -Werror=dangling-else
       -Werror=implicit-fallthrough
       -Werror=infinite-recursion
@@ -46,6 +44,11 @@ function(target_common_errors TARGET SCOPE)
 
   # C-only errors
   set(C_ERRORS -Werror=implicit-function-declaration)
+
+  # GCC-specific errors
+  if(CMAKE_C_COMPILER_ID MATCHES GNU)
+    list(APPEND COMMON_ERRORS -Werror=array-bounds -Werror=array-compare)
+  endif()
 
   target_compile_options(${TARGET} ${SCOPE} ${COMMON_ERRORS}
                          "$<$<COMPILE_LANGUAGE:C>:${C_ERRORS}>")

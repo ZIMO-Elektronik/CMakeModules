@@ -1,5 +1,8 @@
 # Changelog
 
+## 0.12.3
+- Bugfix compiler-specific flags for `target_common_errors`
+
 ## 0.12.2
 - Update to CPM 0.42.1
 - Bugfix `include_what_you_must` paths in windows ([#27](https://github.com/ZIMO-Elektronik/CMakeModules/issues/27))
