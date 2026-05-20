@@ -126,9 +126,9 @@ It sets the following variables:
 - METADATA_FROM_GIT
 
 > [!IMPORTANT]
-> GitHub [actions/checkout@v5](https://github.com/actions/checkout) does not automatically checkout tags. You'll need to manually specify that, e.g.
+> GitHub [actions/checkout@v6](https://github.com/actions/checkout) does not automatically checkout tags. You'll need to manually specify that, e.g.
 > ```yml
-> - uses: actions/checkout@v5
+> - uses: actions/checkout@v6
 >   with:
 >     fetch-depth: 0
 > ```
