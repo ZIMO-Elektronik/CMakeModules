@@ -71,7 +71,7 @@ Build [Qt6](https://www.qt.io/) from source. For more information, please read t
 build_qt(<version> MODULES [modules...] CMAKE_OPTIONS [cmake_options...])
 
 build_qt(
-  6.6.1
+  6.6.3
   MODULES
   qtbase
   qtsvg

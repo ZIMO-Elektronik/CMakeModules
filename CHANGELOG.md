@@ -1,5 +1,8 @@
 # Changelog
 
+## 0.12.4
+- Update to CPM 0.42.3
+
 ## 0.12.3
 - Bugfix compiler-specific flags for `target_common_errors`
 
