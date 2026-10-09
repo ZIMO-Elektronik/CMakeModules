@@ -1,5 +1,6 @@
 add_subdirectory(add_clang_format_target)
 add_subdirectory(add_include_what_you_must_target)
+add_subdirectory(appimagetool)
 add_subdirectory(build_qt)
 add_subdirectory(cpm)
 add_subdirectory(cqtdeployer)

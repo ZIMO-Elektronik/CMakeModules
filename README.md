@@ -26,6 +26,7 @@ CMakeModules bundles CMake modules and toolchain files.
       </ul>
     <li><a href="#findpackagename-files">Find&lt;PackageName&gt; Files</a></li>
       <ul>
+        <li><a href="#findappimagetool">Findappimagetool</a></li>
         <li><a href="#findcqtdeployer">FindCQtDeployer</a></li>
       </ul>
     <li><a href="#toolchain-files">Toolchain Files</a></li>
@@ -134,6 +135,13 @@ It sets the following variables:
 > ```
 
 ## Find&lt;PackageName&gt; Files
+### Findappimagetool
+[appimagetool](https://github.com/AppImage/appimagetool) is used to generate an AppImage from an existing `AppDir`.
+```cmake
+# Fetch appimagetool for host architecture
+find_package(appimagetool)
+```
+
 ### FindCQtDeployer
 [CQtDeployer](https://github.com/QuasarApp/CQtDeployer) is like a cross-platform version of [windeployqt](https://doc.qt.io/qt-6/windows-deployment.html). It helps you to extract all libraries your executable depends on and to create a launch script (or installer) for your application.
 ```cmake
