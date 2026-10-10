@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.13.0
+- Add `Findappimagetool` file
+- Update to CPM 0.43.2
+
 ## 0.12.4
 - Update to CPM 0.42.3
 
